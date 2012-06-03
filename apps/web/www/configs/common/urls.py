@@ -16,3 +16,8 @@ urlpatterns = patterns('',
 urlpatterns += patterns('adscientiawww.core.home.views',
     url(r'^/?$', 'viewHome', name='home_home'),
 )
+
+# Degrees
+urlpatterns += patterns('adscientiawww.core.degrees.views',
+    url(r'^degrees/mathematics/?$', 'viewDegrees', name='degrees_degree'),
+)
