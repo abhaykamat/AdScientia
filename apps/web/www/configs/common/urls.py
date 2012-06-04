@@ -19,5 +19,5 @@ urlpatterns += patterns('adscientiawww.core.home.views',
 
 # Degrees
 urlpatterns += patterns('adscientiawww.core.degrees.views',
-    url(r'^degrees/mathematics/?$', 'viewDegrees', name='degrees_degree'),
+    url(r'^degrees/(?P<degree>[A-Za-z0-9]+)/?$', 'viewDegrees', name='degrees_degree'),
 )
