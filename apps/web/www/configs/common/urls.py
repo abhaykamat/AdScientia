@@ -17,6 +17,11 @@ urlpatterns += patterns('adscientiawww.core.home.views',
     url(r'^/?$', 'viewHome', name='home_home'),
 )
 
+# Home
+urlpatterns += patterns('adscientiawww.core.static.views',
+    url(r'^about/?$', 'view_about', name='static_about'),
+)
+
 # Degrees
 urlpatterns += patterns('adscientiawww.core.degrees.views',
     url(r'^degrees/(?P<degree>[A-Za-z0-9]+)/?$', 'viewDegrees', name='degrees_degree'),
