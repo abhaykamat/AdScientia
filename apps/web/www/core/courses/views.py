@@ -13,4 +13,4 @@ def view_course(request, degree, course):
 
 def view_course_chapter(request, degree, course, chapter):
     """Views the courses page"""
-    return render_response(request, 'courses/%s/%s/%s.html' % (degree, course, chapter), {})
+    return render_response(request, 'courses/%s/%s/%s.html' % (degree, course, chapter), {"chapter": chapter})

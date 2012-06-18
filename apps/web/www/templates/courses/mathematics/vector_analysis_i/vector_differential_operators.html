@@ -1,0 +1,774 @@
+{% extends "base/base.html" %}
+
+{% block main %}
+{% include "base/header.html" %}
+
+<div class="container">
+  <div class="row">
+    <div class="span3">
+      <div class="well sidebar-nav">
+        {% include "courses/mathematics/vector_analysis_i/menu.html" %}
+      </div>
+    </div>
+
+    <div class="span8">
+      <h1>Vector Analysis I</h1>
+      <h2>Vector Differential Operators</h2>
+
+      <p>
+	At this stage, calculus in the context of multi-dimensional functions has been discussed, 
+	including the definition of a tangent vector and the ability to integrate quantities that 
+	vary along a path through space. The notion of a scalar and vector field has been outlined 
+	including a basic discussion of their characteristics. The focus will now shift to the 
+	concept of <em>vector differential operators</em> and how they characterise the physical 
+	properties modelled by scalar and vector fields.</p>
+
+      <p>
+	Previously it has been mentioned that certain physical fields such as a fluid velocity or 
+	gravitational force can be modelled via scalar and vector fields. Physical properties of 
+	interest might include the rate of expansion or rotation of a fluid, the strength of a 
+	gravitational force at a point, the rate of diffusion of a chemical in a solute or the 
+	heat transfer through a metallic bar. These systems may initially appear disparate, but 
+	it is possible to model them using similar mathematical tools. This chapter will discuss 
+	these tools in an abstract setting using generic scalar and vector fields, applying 
+	them to a set of physical phenomena to characterise their properties.
+      </p>
+
+      <p>
+	Two properties of interest are the <em>homogeneity</em> and the <em>isotropy</em> of the 
+	field. A homogeneous field is constant and is thus independent of the position vector 
+	argument. An isotropic field is one which appears identical when looking in all directions 
+	from a particular position vector. Note that homogeneity does not imply isotropy. 
+	Consider the planar vector field $f:\mathbb{R}^2 \rightarrow \mathbb{R}^2$, $x \mapsto f(x) = (1,0)$. 
+	$f$ is a constant homogeneous field but it is clearly not isotropic. To see this, consider looking 
+	along the x-axis (in a Cartesian representation) in both the positive and negative directions. 
+      </p>
+
+      {% comment %}
+      \begin{figure}[h!]
+      \centering
+      \includegraphics[width=0.5\textwidth]{vector-differential-operators/images/homogeneous-non-isotropic-field.png}
+      \caption{A constant homogeneous non-isotropic vector field, $f(x) = (1,0)$}\label{fig:vector-differential-operators:homogeneous-isotropic-field}
+      \end{figure}
+      {% endcomment %}
+
+      <p>
+	Consider a vector field modelling the velocity field of a fluid. Asking whether the fluid has 
+	any sources, sinks or whether the flow rotates at any point are natural questions. To answer them, 
+	vector differential operators will be employed. These operators are functions that take a scalar or 
+	vector field as their argument to produce another scalar or vector field. Hence they are 
+	generalisations of the familiar one-dimensional derivative which can be thought of as a map that 
+	takes a function $f\in C^1(\mathbb{R})$ and returns another function $f'\in C(\mathbb{R})$.
+      </p>
+
+      <p>
+	Four important differential operators will now be discussed: the <em>gradient</em>, <em>divergence</em>, 
+	<em>curl</em> and <em>Laplacian</em>. Each of these operators possesses a clear physical interpretation 
+	and can provide a great deal of information about the field being operated on. Later on in the course 
+	it will be shown how <em>partial differential equations</em> representing physical systems can be 
+	formed from combinations of these operators and fields to produce accurate models of physical systems.
+      </p>
+
+      <h3>Gradient</h3>
+
+      <p>
+	To motivate the concept of a gradient, the familiar one-dimensional derivative will be employed. 
+	This is a map that takes a function $f$ to another function $f'$ representing the best linear 
+	approximation to $f$ at a point $x$. Since $f=f(x)$ where $x \in \mathbb{R}$, it only possesses one 
+	degree of freedom, namely the variable $x$. The gradient provides a means of generalising this map 
+	to systems with additional degrees of freedom, such as scalar fields, which are maps of the form 
+	$g:\mathbb{R}^n \rightarrow \mathbb{R}$. 
+      </p>
+	
+      <p>
+	Since the gradient is a generalisation of the one-dimensional derivative, it is sensible to 
+	suggest that the result of this new gradient operator will produce a vector quantity, one 
+	component for each degree of freedom present in the original field. In addition, it must 
+	also handle scalar fields of dimension one in which case it reduces to the aforementioned 
+	one-dimensional derivative.
+      </p>
+
+      <p>
+	These constraints lead to the natural definition of the most fundamental differential operator, 
+	the <em>gradient operator</em> $\nabla$, or <em>grad</em>. The gradient operator acts on a scalar 
+	field, defined on a vector space, to produce a vector field. Each point of the gradient field contains 
+	a vector of the partial derivatives of the scalar field in each dimension of the original vector space. 
+	More formally:
+      </p>
+
+      <blockquote>
+	<strong>Definition</strong><br />
+	Consider the differentiable scalar field $f:\mathbb{R}^n \rightarrow \mathbb{R}$. Then the mapping 
+	$\nabla f: \mathbb{R}^n \rightarrow \mathbb{R}^n, x \mapsto \nabla f(x) = (\partial_1 f(x), ... , \partial_n f(x))$ 
+	is called the <em>gradient mapping</em> and the vector $\nabla f(x) = (\partial_1 f(x), ... , \partial_n f(x))$ 
+	is called the $\textbf{gradient}$ of $f$ at the point $x$.
+      </blockquote>
+      
+      <p>
+	The most natural way to interpret the gradient field is to see that the vector at each point 
+	in the new gradient field represents the magnitude and direction of the steepest rate of change 
+	of the original scalar field. For instance, consider modelling a the temperature distribution 
+	in a large room by a scalar field. Then the direction of the gradient vector at each point 
+	represents the direction towards a warmer location, while the magnitude of the vector describes 
+	how rapidly the temperature increases in that direction.
+      </p>
+
+      {% comment %}
+      % TODO: Figure \label{fig:vector-differential-operators:temperature-gradient}
+      {% endcomment %}
+
+      <h4>Examples</h4>
+
+      <p>
+	The examples below calculate the gradient map for a group of abstract scalar fields. 
+	Each example is based on scalar fields in $\mathbb{R}^2$ or $\mathbb{R}^3$ but the calculation 
+	easily generalises to $\mathbb{R}^n$. It should be stated that at this stage, the calculation 
+	being applied is utilising a Cartesian coordinate system where the gradient has a 
+	straightforward form. In general curvilinear coordinates, it takes on a more complicated 
+	form. This will be the subject of a later chapter.
+      </p>
+
+      <blockquote>
+	<strong>Example 1</strong><br />
+	Let $f:\mathbb{R}^2 \rightarrow \mathbb{R}$, $(x,y) \mapsto f(x,y) = sin(x) + cos(y)$. Then:
+	\begin{eqnarray*}
+	\nabla f(x,y) &=& \left(\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}\right) \\
+	&=& \left(cos(x), -sin(y)\right)
+	\end{eqnarray*}
+      </blockquote>
+
+      <blockquote>
+	<strong>Example 2</strong><br />
+	Let $f:\mathbb{R}^3 \rightarrow \mathbb{R}$, $(x,y,z) \mapsto f(x,y,z) = xy + xz + yz$. Then:
+	\begin{eqnarray*}
+	\nabla f(x,y,z) &=& \left(\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z} \right) \\
+	&=& \left(y+z,x+z,x+y\right)
+	\end{eqnarray*}
+      </blockquote>
+
+      <blockquote>
+	<strong>Example 3</strong><br />
+	Let $f:\mathbb{R}^3 \rightarrow \mathbb{R}$, $(x,y,z) \mapsto f(x,y,z) = (x^2 + y^2 + z^2)^{-1/2} = 1/r$. Then:
+	\begin{eqnarray*}
+	\nabla f(x,y,z) &=& \left(\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z} \right) \\
+	&=& \left(\frac{x}{x^2 + y^2 + z^2}, \frac{y}{x^2 + y^2 + z^2}, \frac{z}{x^2 + y^2 + z^2}\right) \\
+	&=& r/||r||^2
+	\end{eqnarray*}
+      </blockquote>
+
+      {% comment %}
+      %TODO: Figure \label{fig:vector-differential-operators:gradient-examples}
+      {% endcomment %}
+
+      <p>
+	The last example is an instance of a <em>potential field</em>, which will be studied below. The 
+	representation of a potential generated by a point source is far more appropriate in a spherical 
+	polar coordinate system. It will be shown in 
+	<a href="{% url courses_course_chapter "mathematics", "vector_analysis_i", "curvilinear_coordinates" %}">Curvilinear Coordinates</a> 
+	how to transform vector differential operators between differing curvilinear coordinate systems. This can 
+	sometimes dramatically reduce the difficulty in solving vector operator equations, such as 
+	partial differential equations (PDE).
+      </p>
+
+      <p>
+	The gradient operator provides a generalisation of the one-dimensional derivative map to scalar fields and 
+	is defined only for scalar fields. Vector fields by definition are vector valued and hence require a different 
+	generalisation of the notion of derivative. Intuitively, consider a change in scalar quantity between two 
+	points in a scalar field. The gradient provides us with a way to characterise this change by outlining 
+	the extent of the change in each component of the field. 
+      </p>
+
+      <p>
+	A vector field provides a vector quantity at each point. An infinitesimal traversal of the field can lead to 
+	changes in both the magnitude and the direction of the field. Thus it is natural to define vector differential 
+	operators that can separately characterise the change in magnitude and direction of a vector field. These 
+	two operators are the <em>divergence</em> and the <em>curl</em>. They quantify two important <em>local</em> properties 
+	of physical systems: expansion and rotation.
+      </p>
+
+      <h3>Divergence</h3>
+
+      <p>
+	The $\textbf{divergence}$ operator can be thought of as determining whether there is a net inflow or 
+	outflow in an infinitesimal spatial region. Consider a compressible fluid such as a gas, the velocity 
+	of which modelled as a vector field. It is natural to ask how the gas is expanding or contracting as 
+	the field is traversed. The divergence operator acts on this vector field to produce a scalar field, 
+	each point of the latter providing us with a value about how much expansion or contraction 
+	is occuring at that point. 
+      </p>
+
+      <p>
+	In Cartesian coordinates, the form of the divergence is particularly straightforward. Consider $(x_1,...x_n)$ 
+	as a system of Cartesian coordinates in $\mathbb{R}^n$. Then the divergence is defined by taking the scalar 
+	product of the gradient vector (the vector of the partial derivative operators) with the vector field itself. 
+	This produces a scalar value at each point (i.e. a scalar field). A positive divergence implies a local 
+	expansion, while a negative divergence implies a contraction. A zero divergence field is known as 
+	<em>incompressible</em> or <em>solenoidal</em>. In Cartesian coordinates, the divergence is given by:
+      </p>
+
+      <blockquote>
+	<strong>Definition</strong><br />
+	Let $\textbf{f}:\mathbb{R}^n \rightarrow \mathbb{R}^n$ be a differentiable vector field. The $\textbf{divergence}$ 
+	of the vector field $f=(f_1,...f_n)$ is the scalar field $\nabla \cdot f:\mathbb{R}^n \rightarrow \mathbb{R}, 
+	x \mapsto \nabla \cdot f (x) = \sum^n_{i=1} \frac{\partial f_i}{\partial x_i} (x)$.
+      </blockquote>
+
+      <p>
+	Later on it will be shown how to define the divergence in a more formal manner once the concept of <em>flux</em> 
+	has been defined. One must be careful at this stage - it has already been seen how vector calculus can lead to 
+	notational difficulties. As has been shown earlier on in the course, the scalar (inner) product utilised above 
+	is defined on a vector space. However, the gradient vector is not an element of this space and hence 
+	an <em>abuse of notation</em> occurs, by stating that the divergence is equal to $\nabla \cdot f$. 
+	To avoid this notational ambiguity, some texts write the divergence operator as $\textbf{div}$.
+      </p>
+
+      <h4>Examples</h4>
+
+      <blockquote>
+	<strong>Example 1</strong><br />
+	Let $f:\mathbb{R}^2 \rightarrow \mathbb{R}^2$, $(x,y) \mapsto f(x,y) = (x,y)$. Then:
+	\begin{eqnarray*}
+	\nabla \cdot f(x,y) = \frac{\partial}{\partial x}(x) + \frac{\partial}{\partial y}(y) = 2 > 0.
+	\end{eqnarray*}
+      </blockquote>
+	
+      <p>The field is shown to have positive divergence and hence it is expanding at every point.</p>
+
+      <blockquote>
+        <strong>Example 2</strong><br />
+	Let $f:\mathbb{R}^2 \rightarrow \mathbb{R}^2$, $(x,y) \mapsto f(x,y) = (-y,x)$. Then:
+	\begin{eqnarray*}
+	\nabla \cdot f(x,y) = \frac{\partial}{\partial x}(-y) + \frac{\partial}{\partial y}(x) = 0.
+	\end{eqnarray*}
+      </blockquote>
+
+      <p>
+	In this field, the contraction in the horizontal direction is cancelled out by the expansion 
+	in the vertical direction. Hence the total expansion at any point is zero.
+      </p>
+
+      <blockquote>
+        <strong>Example 3</strong><br />
+	Let $f:\mathbb{R}^2 \rightarrow \mathbb{R}^2$, $(x,y) \mapsto f(x,y) = (sin(y),cos(x))$. Then:
+	\begin{eqnarray*}
+	\nabla \cdot f(x,y) = \frac{\partial}{\partial x}(sin(y)) + \frac{\partial}{\partial y}(cos(x)) = 0.
+	\end{eqnarray*}
+      </blockquote>
+
+      <p>
+	In this field the periodic expansion in each axis is cancelled out by the periodic contraction 
+	in the other, as in the example above. Hence the divergence of this field is zero.
+      </p>
+
+      <blockquote>
+        <strong>Example 4</strong><br />
+	Let $f:\mathbb{R}^2 \rightarrow \mathbb{R}^2$, $(x,y) \mapsto f(x,y) = (sin(x),cos(y))$. Then:
+	\begin{eqnarray*}
+	\nabla \cdot f(x,y) &=& \frac{\partial}{\partial x}(sin(x)) + \frac{\partial}{\partial y}(cos(y)) \\
+	&=& cos(x) - sin(y).
+	\end{eqnarray*}
+      </blockquote>
+
+      <p>
+	The field above is similar to the previous periodic example, with the exception that the expansion 
+	and contraction do not always cancel and can even accumulate. Since $sin(s),\;\;cos(s) \in [-1,1]$, 
+	for $s\in\mathbb{R}$ it implies that $\nabla \cdot f(x,y) \in [-2,2]$.
+      </p>
+
+      <h3>Curl</h3>
+
+      <p>
+	The divergence operator is the natural tool to discuss contraction and expansion of a vector field. 
+	Continuing with the fluid velocity field example, it can be asked whether the fluid is locally 
+	rotating at any point. The curl operator provides a means of characterising this local 
+	differential rotation. 
+      </p>
+
+      <p>
+	Unlike the divergence operator, which produces a scalar field, the curl provides a vector at 
+	every point. The length and direction of this vector describes the field rotation. In order 
+	to formally define the curl, it is necessary to resort to the concept of <em>circulation</em>, 
+	which will be discussed in <a href="{% url courses_course_chapter "mathematics", "vector_analysis_i", "integral_theorems" %}">Integral Theorems</a>. 
+	The curl is defined in such a way that it is locally orthogonal to the vector field, the 
+	direction being perpendicular to the local flow rotation plane. Unlike the divergence operator, 
+	the curl does not straightforwardly generalise to dimensions beyond three.
+      </p>
+
+      <p>
+	In Cartesian coordinates, the curl can be obtained by taking the vector (cross) product of the 
+	vector of partial derivatives and the vector field, $\textbf{f}$. Once again, this is an abuse 
+	of notation when written as $\nabla \times \textbf{f}$.
+      </p>
+
+      <blockquote>
+	<strong>Definition: Curl ($\mathbb{R}^3$)</strong><br />
+	Let $f:\mathbb{R}^3 \rightarrow \mathbb{R}^3$ be a differentiable vector field in space. 
+	The $\textbf{curl}$ of the vector field $f=(f_1,f_2,f_3)$ is the vector field 
+	$\nabla \times f : \mathbb{R}^3 \rightarrow \mathbb{R}^3, (x, y, z) \mapsto \nabla \times f(x, y, z)$, given by:
+	\begin{eqnarray}
+	\nabla \times f = 
+	\left( {\begin{array}{c}
+	\frac{\partial f_3}{\partial y} - \frac{\partial f_2}{\partial z}   \\
+	\frac{\partial f_1}{\partial z} - \frac{\partial f_3}{\partial x}   \\
+	\frac{\partial f_2}{\partial x} - \frac{\partial f_1}{\partial y}   \\
+	\end{array} } \right)
+	\end{eqnarray}
+      </blockquote>
+
+      <p>To avoid the above abuse of notation, some texts write the curl as <em>rot</em>.</p>
+
+      <h4>Examples</h4>
+
+      <blockquote>
+	<strong>Example 1</strong><br />
+	Let $f:\mathbb{R}^3 \rightarrow \mathbb{R}^3$, $(x,y,z) \mapsto f(x,y,z) = (x,y,z)$. Then:
+	\begin{eqnarray*}
+	\nabla \times f = 
+	\left( {\begin{array}{c}
+	\frac{\partial}{\partial y}(y) - \frac{\partial}{\partial z}(y)   \\
+	\frac{\partial}{\partial z}(x) - \frac{\partial}{\partial x}(z)   \\
+	\frac{\partial}{\partial x}(y) - \frac{\partial}{\partial y}(x)   \\
+	\end{array} } \right) = \left( {\begin{array}{c}
+	0 \\ 0 \\ 0 
+	\end{array} } \right)
+	\end{eqnarray*}
+      </blockquote>
+
+      <blockquote>
+	<strong>Example 2</strong><br />
+	Let $f:\mathbb{R}^3 \rightarrow \mathbb{R}^3$, $(x,y,z) \mapsto f(x,y,z) = (-y,x,0)$. Then:
+	\begin{eqnarray*}
+	\left( {\begin{array}{c}
+	\frac{\partial}{\partial y}(0) - \frac{\partial}{\partial z}(x)   \\
+	\frac{\partial}{\partial z}(-y) - \frac{\partial}{\partial x}(0)   \\
+	\frac{\partial}{\partial x}(x) - \frac{\partial}{\partial y}(-y)   \\
+	\end{array} } \right) = \left( {\begin{array}{c}
+	0 \\ 0 \\ 2 
+	\end{array} } \right)
+	\end{eqnarray*}
+      </blockquote>
+
+      <h4>Curl Identities</h4>
+
+      <p>
+	There are two important properties of the curl which will now be addressed. The first states 
+	that the curl of any gradient of a scalar field is the zero vector field. This will have important 
+	implications for <em>gradient vector fields</em> which will be discussed later. The second states that 
+	the divergence of the curl of a vector field is zero. Both of the results occur because of the 
+	equality of mixed partial derivatives. 
+      </p>
+
+      <blockquote>
+	<strong>Theorem (Curl of a Gradient):</strong><br />
+	Let $f:\mathbb{R}^3 \rightarrow \mathbb{R}$, $f \in C^2(\mathbb{R})$ be a twice differentiable scalar field. Then the curl of the gradient field of $f$ is the zero field:
+	\begin{eqnarray}
+	\nabla \times \nabla f = \mathbf{0}
+	\end{eqnarray}
+
+	<strong>Proof:</strong><br />
+	The gradient of $f$, $\nabla f$, is given by $\nabla f = (\partial f / \partial x, \partial f / \partial y, \partial f / \partial z)$. Hence, by the equality of mixed partial derivatives (which exist because $f \in C^2(\mathbb{R})$):
+	\begin{eqnarray}
+	\nabla \times \nabla f = 
+	\left( {\begin{array}{c}
+	\frac{\partial (\partial f / \partial z)}{\partial y} - \frac{\partial (\partial f / \partial y)}{\partial z}   \\
+	\frac{\partial (\partial f / \partial x)}{\partial z} - \frac{\partial (\partial f / \partial z)}{\partial x}   \\
+	\frac{\partial (\partial f / \partial y)}{\partial x} - \frac{\partial (\partial f / \partial x)}{\partial y}   \\
+	\end{array} } \right) =
+	\left( {\begin{array}{c}
+	\frac{\partial^2 f}{\partial y \partial z} - \frac{\partial^2 f}{\partial z \partial y}   \\
+	\frac{\partial^2 f}{\partial z \partial x} - \frac{\partial^2 f}{\partial x \partial z}   \\
+	\frac{\partial^2 f}{\partial x \partial y} - \frac{\partial^2 f}{\partial y \partial x}   \\
+	\end{array} } \right) = \textbf{0}
+	\end{eqnarray}
+      </blockquote>
+
+      <blockquote>
+	<strong>Theorem (Divergence of a Curl):</strong></br />
+	Let $f:\mathbb{R}^3 \rightarrow \mathbb{R}^3$ be a spatial vector field. Then the divergence of the curl of the field is zero:
+	\begin{eqnarray}
+	\nabla \cdot (\nabla \times f) = 0
+	\end{eqnarray}
+
+	<strong>Proof:</strong></br />
+	Once again the proof relies on the equality of mixed partial derivatives:
+	\begin{eqnarray*}
+	\nabla \cdot (\nabla \times f) &=& 
+	\frac{\partial}{\partial x} \left(\frac{\partial f_3}{\partial y} - \frac{\partial f_2}{\partial z}\right) + 
+	\frac{\partial}{\partial y} \left(\frac{\partial f_1}{\partial z} - \frac{\partial f_3}{\partial x}\right) + 
+	\frac{\partial}{\partial z} \left(\frac{\partial f_2}{\partial x} - \frac{\partial f_1}{\partial y}\right) \\
+	&=& \left(\frac{\partial^2 f_1}{\partial y \partial z} - \frac{\partial^2 f_1}{\partial z \partial y}\right) + \left(\frac{\partial^2 f_2}{\partial x \partial z} - \frac{\partial^2 f_2}{\partial z \partial x}\right) + \left(\frac{\partial^2 f_3}{\partial y \partial x} - \frac{\partial^2 f_3}{\partial x \partial y}\right) \\
+	&=& 0
+	\end{eqnarray*}
+      </blockquote>
+
+      <h3>Laplacian</h3>
+
+      <p>
+	The final operator that will be discussed is the Laplace operator, or <em>Laplacian</em>, 
+	$\Delta$. The Laplacian is primarily associated with the physical concepts of smearing, diffusion and viscosity.
+      </p>
+
+      <p>
+	The net rate of diffusion of a dissolved chemical in a fluid is proportional to the Laplacian of 
+	the chemical concentration at that point. The <em>diffusion equation</em> is a partial differential 
+	equation which formalises this process. It will be studied in the second year course 
+	<a href="{% url courses_course "mathematics", "partial_differential_equations_i" %}">Partial Differential Equations I</a>. 
+	The term modelling viscosity in the famous Navier-Stokes fluid equations is given by the Laplacian 
+	of the vector of scalar quantities (velocity, pressure, density). The Laplacian is an 
+	indispensible operator in the fields of gravitation, electrodynamics and fluid dynamics. 
+      </p>
+
+      <p>
+	Given a scalar field $f$ the Laplacian is defined as the divergence of the gradient of the field, 
+	$\Delta f = \nabla \cdot \nabla f$. In Cartesian coordinates the Laplacian has a simple form. 
+	It is the sum of the non-mixed second-order partial derivatives of the field in each dimension. Formally:
+      </p>
+
+      <blockquote>
+	<strong>Definition</strong><br />
+	Let $f:\mathbb{R}^n \rightarrow \mathbb{R}$, $f \in C^2(\mathbb{R})$ be a twice differentiable scalar field. 
+	The $\textbf{Laplacian}$ of the scalar field $f$ is the scalar field $\Delta f: \mathbb{R}^n \rightarrow \mathbb{R}$, 
+	$x \mapsto \Delta f(x) = \nabla \cdot \nabla f (x) = \sum^n_{i=1} \frac{\partial^2 f}{\partial x^2_i}(x)$. 
+	An alternative notation for the Laplacian operator $\Delta$ is $\nabla^2$.
+      </blockquote>
+
+      <h4>Examples</h4>
+
+      <blockquote>
+	<strong>Example 1</strong><br />
+	Let $f:\mathbb{R}^3 \rightarrow \mathbb{R}$, $(x,y,z) \mapsto f(x,y,z) = (x^2 + y^2 + z^2)^{-1/2} = 1/r$. Then:
+	\begin{eqnarray*}
+	\Delta f (x,y,z) &=& \nabla \cdot \nabla f(x,y,z) = \left(\frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} + \frac{\partial^2 f}{\partial z^2}\right)(x,y,z) \\
+	&=& \frac{\partial}{\partial x}\left(\frac{-x}{x^2 + y^2 + z^2}\right) + \frac{\partial}{\partial y}\left(\frac{-y}{x^2 + y^2 + z^2}\right) + \frac{\partial}{\partial z}\left(\frac{-z}{x^2 + y^2 + z^2}\right) \\
+	&=& \frac{3(x^2 + y^2 + z^2)}{(x^2 + y^2 + z^2)^{5/2}} - \frac{3}{(x^2 + y^2 + z^2)^{3/2}} = 0
+	\end{eqnarray*}
+      </blockquote>
+
+      <p>
+	Solutions to the equation $\Delta f = 0$, known as <em>Laplace's equation</em>, are called <em>harmonic functions</em> 
+	and play an important role in modelling gravitational fields in free space. This equation will be studied 
+	extensively in <a href="{% url courses_course "mathematics", "partial_differential_equations_i" %}">Partial Differential Equations I</a>.
+      </p>
+      
+      <h3>Gradient Fields and Potential</h3>
+
+      <p>
+	If a vector field can be given as the gradient of a scalar field, then it is said to be a <em>gradient field</em>. 
+	Gradient fields possess numerous useful properties are another indispensible tool in physics. 
+	These fields arise naturally in certain physical situations such as particular types of 
+	gravitational or electromagnetic fields. It has already been shown that the curl of a gradient 
+	is identically zero. This implies that any gradient vector field will be irrotational.
+      </p>
+
+      <p>
+	It turns out (and will be formally proven later) that an irrotational vector field is <em>conservative</em>. 
+	This means that translating a particle from point to point in the field will not change its total energy. 
+	The gravitational potential energy will be translated into kinetic energy and vice versa.
+	This is a property shared by gravitational fields and hence a gravitational force field can be written as 
+	a gradient of a scalar <em>potential</em>.
+      </p>
+
+      <blockquote>
+	<strong>Definition</strong><br />
+	A vector field $f:D \rightarrow \mathbb{R}^n$, $D \subset \mathbb{R}^n$ is called a $\textbf{gradient vector field}$, 
+	if $\exists \Phi:D \rightarrow \mathbb{R}$ with:
+	\begin{eqnarray}
+	f(x) = \nabla \Phi (x)\;\;\;\;\;\;\;\; \forall x \in D.
+	\end{eqnarray}
+	If such a $\Phi$ exists then it is called the $\textbf{potential}$ of $f$.
+      </blockquote>
+	
+      <p>
+	Notice that by this definition, if $\Phi$ is a potential of $f$, then so is $\Phi + k$, for 
+	$k\in\mathbb{R}$ as $\nabla (\Phi + k)(x) = \nabla \Phi(x)$. Thus the potential is only unique up 
+	to a constant. Not every vector field $f$ has a potential and thus not all are not of gradient type.
+      </p>
+
+      <h4>Examples</h4>
+
+      <p><em>% Example of a non-gradient vector field</em></p>
+
+      <p><em>% Physical Interpretation</em></p>
+
+      <h4>Fundamental Theorem of Vector Calculus</h4>
+
+      <p>The Fundamental Theorem of Vector Calculus will now be motivated via a familiar physical scenario.</p>
+
+      <p>
+	Consider a particle in the gravititational field generated by a point mass at the origin, $0$. 
+	If the particle moves from point $x$ to $y$ in the field ($x,y \neq 0)$, then due to the law of 
+	conservation of energy, the kinetic and potential energy are being exchanged as the particle's 
+	radial distance from the point source changes. 
+      </p>
+
+      <p>
+	If the particle has a total energy $H$ and starts at point $x$, then regardless of how it ends 
+	up at $y$, it will still possess the same total energy, $H$. However, kinetic energy may have 
+	been exchanged for potential energy, or vice versa, while en route. This implies that the work 
+	done on the particle as it moves through the field is independent of the path taken. Any 
+	field in which this property occurs is known as a <em>conservative</em> field.
+      </p>
+
+      <p>
+	The notion of path-independent work will now be generalised. To achieve this, the path of 
+	the particle will be represented by a piece-wise $C^1$-differentiable curve, $\mathscr{C}$, 
+	parametrised by a map from a subset of the real line to n-dimensional Euclidean space, 
+	$\gamma:[a,b]\rightarrow \mathbb{R}^n$. The tangent line integral along the path $\mathscr{C}$ 
+	of the <em>gradient of the potential field</em> represents the work carried out on the 
+	particle as it traverses the path. It will be shown that this integral is in fact only 
+	dependent upon the values of the potential at the end points of the parametrisation of the path.
+      </p>
+
+      <p>
+	The proof of this result is very elegant. It relies on two key theorems, namely the 
+	<em>chain rule</em> for composite functions and the <em>fundamental theorem of calculus</em>
+	in one variable:
+      </p>
+
+      <blockquote>
+	<strong>Theorem (Fundamental Theorem of Vector Calculus)</strong><br />
+	Let $\Phi:\mathbb{R}^n \rightarrow \mathbb{R}$ be a $C^1$-differentiable scalar field. Let $\mathscr{C} \in \mathbb{R}^n$ be a piece-wise $C^1$-differentiable curve parametrised by $\gamma:[a,b]\rightarrow \mathbb{R}^n$. Let $f:\mathbb{R}^n \rightarrow \mathbb{R}^n$ be a gradient vector field s.t. $\nabla \Phi = f$. Then the tangent line integral is only a funtion of the endpoints of the parameterisation and the potential:
+	\begin{eqnarray}
+	\int_\mathscr{C} \nabla \Phi \cdot ds = \Phi(\gamma(b)) - \Phi(\gamma(a))
+	\end{eqnarray}
+
+	<strong>Proof:</strong><br />
+	The proof makes use of the Fundamental Theorem of Calculus for real valued functions and the chain rule for composite functions. 
+	If the chain rule is applied to the map $[a,b] \rightarrow \mathbb{R}$, $t \mapsto \Phi(\gamma(t))$, then:
+	\begin{eqnarray}
+	(\Phi \circ \gamma)'(t) = \nabla \Phi (\gamma(t)) \cdot \gamma'(t)
+	\end{eqnarray}
+	Thus by the Fundamental Theorem of Calculus for real valued functions:
+	\begin{eqnarray}
+	\int_\mathscr{C} \nabla \Phi \cdot dS &=& \int^b_a \nabla \Phi (\gamma(t)) \cdot \gamma'(t) dt  \\
+	&=& \int^b_a (\Phi \circ \gamma)'(t) = \Phi(\gamma(b)) - \Phi (\gamma(a))
+	\end{eqnarray}
+      </blockquote>
+
+      <h3>Vector Identities</h3>
+
+      <p>
+	The solution of PDE often requires manipulation of vector operators. Certain properties such as 
+	linearity provide insight into the behaviour of these equations. The following identities will 
+	certainly come in useful in later studies of theoretical or physical phenomena.
+      </p>
+
+      <p>
+	The first identities concern the linearity of the gradient function. 
+	If $f,g:\mathbb{R}^n \rightarrow \mathbb{R}$ are scalar fields, then:
+      </p>
+      
+      <ul>
+	<li>The gradient of their sum is the sum of their respective gradients</li>
+	<li>The gradient of a scalar multiple of each field is the scalar multiple of the gradient of that field</li>
+      </ul>
+
+      <p>This is made precise by the following:</p>
+
+      <blockquote>
+	<strong>Proposition:</strong><br />
+	\begin{eqnarray}
+	\nabla(f + g) &=& \nabla f + \nabla g \\
+	\nabla(cf) &=& c\nabla f,\;\;\;\;c \in \mathbb{R}
+	\end{eqnarray}
+
+	<strong>Proof:</strong><br />
+	The proof of both of the above identities makes use of the linearity of the partial derivative operator, after which the results follow straightforwardly.
+	\begin{eqnarray*}
+	\nabla(f+g) &=& \left( \frac{\partial (f + g)}{\partial x_1}, ... \;, \frac{\partial (f + g)}{\partial x_n} \right) \\
+	&=& \left( \frac{\partial f}{\partial x_1} + \frac{\partial g}{\partial x_1}, ... \;, \frac{\partial f}{\partial x_n} + \frac{\partial g}{\partial x_n} \right) \\
+	&=& \left( \frac{\partial f}{\partial x_1}, ... \;, \frac{\partial f}{\partial x_n}\right) + \left(\frac{\partial g}{\partial x_1}, ... \;, \frac{\partial g}{\partial x_n} \right) = \nabla f + \nabla g 
+	\end{eqnarray*}
+	\begin{eqnarray*}
+	\nabla(cf) &=& \left( \frac{\partial (c f)}{\partial x_1}, ...\;, \frac{\partial (c f)}{\partial x_n} \right)\\
+	&=& \left( c\frac{\partial f}{\partial x_1}, ...\;, c\frac{\partial f}{\partial x_n} \right)\\
+	&=& c \left( \frac{\partial f}{\partial x_1}, ...\;, \frac{\partial f}{\partial x_n} \right) = c\nabla f
+	\end{eqnarray*}
+      </blockquote>
+
+      <p>The second set of identities generalise the product and quotient rules from one dimensional calculus. If $f,g$ are as before then:</p>
+
+      <blockquote>
+	<strong>Proposition:</strong><br />
+	\begin{eqnarray}
+	\nabla(fg) &=& f\nabla g + g\nabla f \\
+	\nabla(f/g) &=& (g\nabla f - f\nabla g)/g^2,\;\;\;\;\;\;\;g(\textbf{x}) \neq 0
+	\end{eqnarray}
+
+	<strong>Proof:</strong><br />
+	The proofs make use of the product and quotient rule for partial derivatives, after which the results follow straightforwardly as for the linearity identities.
+	\begin{eqnarray*}
+	\nabla(fg) &=& \left( \frac{\partial(fg)}{\partial x_i}, ... , \frac{\partial(fg)}{\partial x_n} \right) \\
+	&=& \left( f \frac{\partial g}{\partial x_i} + g \frac{\partial f}{\partial x_i}, ... , f \frac{\partial g}{\partial x_n} + g \frac{\partial f}{\partial x_n} \right) \\
+	&=& f \left( \frac{\partial g}{\partial x_i}, ..., \frac{\partial g}{\partial x_n}\right) + g \left( \frac{\partial f}{\partial x_i}, ..., \frac{\partial f}{\partial x_n}\right) \\
+	&=& f\nabla g + g\nabla f
+	\end{eqnarray*}
+	\begin{eqnarray*}
+	\nabla(f/g) &=& \left( \frac{\partial(f/g)}{\partial x_i}, ... , \frac{\partial(f/g)}{\partial x_n} \right) \\
+	&=& \left( \frac{1}{g^2}\left[ g \frac{\partial f}{\partial x_i} - f \frac{\partial g}{\partial x_i} \right], ... , \frac{1}{g^2}\left[ g \frac{\partial f}{\partial x_n} - f \frac{\partial g}{\partial x_n} \right] \right) \\
+	&=& \frac{1}{g^2} \left[ g \left( \frac{\partial f}{\partial x_i}, ... , \frac{\partial f}{\partial x_n}\right) - f \left( \frac{\partial g}{\partial x_i}, ... , \frac{\partial g}{\partial x_n}\right)\right] \\
+	&=& (g\nabla f - f\nabla g)/g^2
+	\end{eqnarray*}
+      </blockquote>
+
+      <p>
+	The third set of identities relate the behaviour of the divergence and curl over the sum of 
+	two vector fields, $u,v:\mathbb{R}^n \rightarrow \mathbb{R}^n$. The divergence and curl are 
+	both linear operators and the first property of linearity is made clear by the following:
+      </p>
+      
+      <blockquote>
+        <strong>Proposition:</strong><br />
+	\begin{eqnarray}
+	\nabla \cdot (u + v) &=& \nabla \cdot u + \nabla \cdot v \\
+	\nabla \times (u + v) &=& \nabla \times u + \nabla \times v
+	\end{eqnarray}
+
+	<strong>Proof:</strong><br />
+	\begin{eqnarray*}
+	\nabla \cdot (u+v) &=& \sum_{i=1}^{n} \frac{\partial (u_i + v_i)}{\partial x_i} \\
+	&=& \sum_{i=1}^{n} \frac{\partial u_i}{\partial x_i} + \frac{\partial v_i}{\partial x_i} \\
+	&=& \sum_{i=1}^{n} \frac{\partial u_i}{\partial x_i} + \sum_{i=1}^{n} \frac{\partial v_i}{\partial x_i} = \nabla u + \nabla v 
+	\end{eqnarray*}
+	\begin{eqnarray*}
+	\nabla \times (u + v) &=& \left( \frac{\partial (u_3 + v_3)}{\partial x_2} - \frac{\partial (u_2 + v_2)}{\partial x_3}, 
+  	\frac{\partial (u_1 + v_1)}{\partial x_3} - \frac{\partial (u_3 + v_3)}{\partial x_1},
+  	\frac{\partial (u_1 + v_1)}{\partial x_2} - \frac{\partial (u_2 + v_2)}{\partial x_2} \right) \\
+	&=& \left(\frac{\partial u_3}{\partial x_2} - \frac{\partial u_2}{\partial x_3}, 
+  	\frac{\partial u_1}{\partial x_3} - \frac{\partial u_3}{\partial x_1},
+  	\frac{\partial u_1}{\partial x_2} - \frac{\partial u_2}{\partial x_2} \right) + \\ 				
+  	&& \left(\frac{\partial v_3}{\partial x_2} - \frac{\partial v_2}{\partial x_3}, 
+  	\frac{\partial v_1}{\partial x_3} - \frac{\partial v_3}{\partial x_1},
+  	\frac{\partial v_1}{\partial x_2} - \frac{\partial v_2}{\partial x_2} \right) \\
+	&=& \nabla \times u + \nabla \times v
+	\end{eqnarray*}
+      </blockquote>
+
+      <p>
+	The fourth set of identities describe the behaviour of the divergence and curl of a scalar 
+	field multiplied by a vector field. Note that if $f$ is the constant field, then $\nabla f = 0$ 
+	and hence the second term disappears in both instances. This confirms the linearity of the divergence and curl.
+      </p>
+      
+      <blockquote>
+	<strong>Proposition:</strong><br />
+	\begin{eqnarray}
+	\nabla \cdot (fu) &=& f \nabla \cdot u + u \cdot \nabla f \label{eqn:vector-differential-operators:divergence-scalar-vector} \\
+	\nabla \times (fu) &=& f \nabla \times u + \nabla f \times u
+	\end{eqnarray}
+
+	<strong>Proof:</strong><br />
+	\begin{eqnarray*}
+	\nabla \cdot (fu) &=& \sum_{i=1}^{n} \frac{\partial (f u_i)}{\partial x_i} \\
+	&=& \sum_{i=1}^{n} \frac{\partial f}{\partial x_i}u_i + f \frac{\partial u_i}{\partial x_i} \\
+	&=& \sum_{i=1}^{n} \frac{\partial f}{\partial x_i}u_i + f \sum_{i=1}^{n} \frac{\partial u_i}{\partial x_i} \\
+	&=& u \cdot \nabla f + f \nabla \cdot u
+	\end{eqnarray*}
+	\begin{eqnarray*}
+	\nabla \times (fu) &=& \left(\frac{\partial (fu_3)}{\partial y} - \frac{\partial (fu_2)}{\partial z}, \frac{\partial (fu_1)}{\partial z} - \frac{\partial (fu_3)}{\partial x}, \frac{\partial (fu_2)}{\partial x} - \frac{\partial (fu_1)}{\partial y}\right) \\
+	&=& \left( f \frac{\partial u_3}{\partial y} + u_3 \frac{\partial f}{\partial y} - f \frac{\partial u_2}{\partial z} - u_2 \frac{\partial f}{\partial z}, 
+	f \frac{\partial u_1}{\partial z} + u_1 \frac{\partial f}{\partial z} - f \frac{\partial u_3}{\partial x} - u_3 \frac{\partial f}{\partial x}, 
+	f \frac{\partial u_2}{\partial x} + u_2 \frac{\partial f}{\partial x} - f \frac{\partial u_1}{\partial y} - u_1 \frac{\partial f}{\partial y} \right) \\
+	&=& f \left(\frac{\partial u_3}{\partial y} - \frac{\partial u_2}{\partial z}, \frac{\partial u_1}{\partial z} - \frac{\partial u_3}{\partial x}, \frac{\partial u_3}{\partial y} - \frac{\partial u_2}{\partial z} \right) + \\
+	&& \left( u_3 \frac{\partial f}{\partial y} - u_2 \frac{\partial f}{\partial z}, u_1 \frac{\partial f}{\partial z} - u_3 \frac{\partial f}{\partial x}, u_2 \frac{\partial f}{\partial x} - u_1 \frac{\partial f}{\partial y} \right) \\
+	&=& f \nabla \times u + \nabla f \times u
+	\end{eqnarray*}
+      </blockquote>
+
+      <p>
+	This identity concerns the divergence of a vector product. Note that if both $u$ 
+	and $v$ are irrotational, then the divergence of their vector product is zero. 
+      </p>
+
+      <blockquote>
+	<strong>Proposition:</strong><br />
+	\begin{eqnarray}
+	\nabla \cdot (u \times v) = v \cdot \nabla \times u - u \cdot \nabla \times v
+	\end{eqnarray}
+
+	<strong>Proof:</strong><br />
+	\begin{eqnarray*}
+	\nabla \cdot (u \times v) &=& \frac{\partial}{\partial x_1} (u_2 v_3 - v_2 u_3) + \frac{\partial}{\partial x_2} (v_1 u_3 - u_1 v_3) + \frac{\partial}{\partial x_3} (u_1 v_2 - v_1 u_2) \\
+	&=& \frac{\partial( u_2 v_3 )} {\partial x_1} - \frac{\partial( v_2 u_3 )} {\partial x_1} + \frac{\partial( v_1 u_3 )} {\partial x_2} - \frac{\partial( u_1 v_2 )} {\partial x_2} + \frac{\partial( u_1 v_2 )} {\partial x_3} - \frac{\partial( v_1 u_2 )} {\partial x_3} \\
+	&=& u_2 \frac{\partial v_3 } {\partial x_1} + v_3 \frac{\partial u_2 } {\partial x_1} - v_2 \frac{\partial u_3 } {\partial x_1} - u_3 \frac{\partial v_2 } {\partial x_1} + \\
+	&& v_1 \frac{\partial u_3 } {\partial x_2} + u_3 \frac{\partial v_1 } {\partial x_2} - u_1 \frac{\partial v_2 } {\partial x_2} - v_2 \frac{\partial u_1 } {\partial x_2} +\\
+	&& u_1 \frac{\partial v_2 } {\partial x_3} + v_2 \frac{\partial u_1 } {\partial x_3} - v_1 \frac{\partial u_2 } {\partial x_3} - u_2 \frac{\partial u_1 } {\partial x_3}\\
+	&=& \left[v_1 \left(\frac{\partial u_3}{\partial x_2} - \frac{\partial u_2}{\partial x_3}\right) + v_2 \left(\frac{\partial u_1}{\partial x_3} - \frac{\partial u_3}{\partial x_1}\right) + v_3 \left(\frac{\partial u_2}{\partial x_1} - \frac{\partial u_1}{\partial x_2}\right)\right] + \\
+	&& \left[u_1 \left(\frac{\partial v_3}{\partial x_2} - \frac{\partial v_2}{\partial x_3}\right) + u_2 \left(\frac{\partial v_1}{\partial x_3} - \frac{\partial v_3}{\partial x_1}\right) + u_3 \left(\frac{\partial v_2}{\partial x_1} - \frac{\partial v_1}{\partial x_2}\right)\right] \\
+	&=& v \cdot \nabla \times u - u \cdot \nabla \times v
+	\end{eqnarray*}
+      </blockquote>
+
+      <p>
+	This identity states that the Laplacian of the product of two scalar fields is, by definition, 
+	the gradient of a gradient of a product of scalar fields. It makes use of the fact that the 
+	scalar product is commutative.
+      </p>
+      
+      <blockquote>
+	<strong>Proposition:</strong><br />
+	\begin{eqnarray}
+	\Delta (fg) = f \Delta g + g \Delta f + 2 (\nabla f \cdot \nabla g)
+	\end{eqnarray}
+
+	<strong>Proof:</strong><br />
+	\begin{eqnarray*}
+	\Delta (fg) &=& \frac{\partial^2 }{\partial x^2_1}(fg) + \ldots + \frac{\partial^2 }{\partial x^2_n}(fg) \\
+	&=& \frac{\partial}{\partial x_1}\left(\frac{\partial (fg)}{\partial x_1}\right) + \ldots + \frac{\partial}{\partial x_n}\left(\frac{\partial (fg)}{\partial x_n}\right)\\
+	&=& \frac{\partial}{\partial x_1}\left( f\frac{\partial g}{\partial x_1} + g\frac{\partial f}{\partial x_1} \right) + \ldots + \frac{\partial}{\partial x_1}\left( f\frac{\partial g}{\partial x_n} + g\frac{\partial f}{\partial x_n} \right)\\
+	&=& f \frac{\partial^2 g}{\partial x^2_1} + \frac{\partial f}{\partial x_1} \frac{\partial g}{\partial x_1} + g \frac{\partial^2 f}{\partial x^2_1} + \frac{\partial g}{\partial x_1} \frac{\partial f}{\partial x_1} + \ldots +\\
+	&& f \frac{\partial^2 g}{\partial x^2_n} + \frac{\partial f}{\partial x_n} \frac{\partial g}{\partial x_n} + g \frac{\partial^2 f}{\partial x^2_n} + \frac{\partial g}{\partial x_n} \frac{\partial f}{\partial x_n} \\
+	&=& f \Delta g + g \Delta f + 2 (\nabla f \cdot \nabla g)
+	\end{eqnarray*}
+      </blockquote>
+
+      <p>
+	This identity states that the divergence of the vector product of two gradient fields is zero. 
+	Hence the vector field orthogonal to both the gradient of $f$ and $g$ is solenoidal.
+      </p>
+
+      <blockquote>
+        <strong>Proposition:</strong><br />
+	\begin{eqnarray}
+	\nabla \cdot (\nabla f \times \nabla g) = 0
+	\end{eqnarray}
+
+	<strong>Proof:</strong>
+	\begin{eqnarray*}
+	\nabla \cdot (\nabla f \times \nabla g) &=& \frac{\partial}{\partial x} \left( \frac{\partial f}{\partial y} \frac{\partial g}{\partial z} - \frac{\partial g}{\partial y} \frac{\partial f}{\partial z}\right) + \\
+	&& \frac{\partial}{\partial y} \left( \frac{\partial g}{\partial x} \frac{\partial f}{\partial z} - \frac{\partial f}{\partial x} \frac{\partial g}{\partial z}\right) + \\
+	&& \frac{\partial}{\partial z} \left( \frac{\partial f}{\partial x} \frac{\partial g}{\partial y} - \frac{\partial g}{\partial x} \frac{\partial f}{\partial y}\right) \\
+	&=& \frac{\partial^2 f}{\partial x \partial y} \frac{\partial g}{\partial z} + \frac{\partial f}{\partial y} \frac{\partial^2 g}{\partial x \partial z} - \\
+	&& \frac{\partial^2 g}{\partial x \partial y} \frac{\partial f}{\partial z} - \frac{\partial g}{\partial y} \frac{\partial^2 f}{\partial x \partial z} + \\
+	&& \frac{\partial^2 g}{\partial y \partial x} \frac{\partial f}{\partial z} + \frac{\partial g}{\partial x} \frac{\partial^2 f}{\partial y \partial z} - \\
+	&& \frac{\partial^2 f}{\partial x \partial y} \frac{\partial g}{\partial z} - \frac{\partial f}{\partial x} \frac{\partial^2 g}{\partial y \partial z} + \\
+	&& \frac{\partial^2 f}{\partial x \partial z} \frac{\partial g}{\partial y} + \frac{\partial f}{\partial x} \frac{\partial^2 g}{\partial y \partial z} - \\
+	&& \frac{\partial^2 g}{\partial x \partial z} \frac{\partial f}{\partial y} - \frac{\partial g}{\partial x} \frac{\partial^2 f}{\partial y \partial z} = 0 
+	\end{eqnarray*}
+      </blockquote>
+
+      <p>
+	The final identity is a consequence of the linearity of the divergence operator and 
+	\ref{eqn:vector-differential-operators:divergence-scalar-vector}, applied to the vector field $u = \nabla g$.
+      </p>
+
+      <blockquote>
+        <strong>Proposition:</strong><br />
+	\begin{eqnarray}
+	\nabla \cdot (f\nabla g - g\nabla f) = f \Delta g - g \Delta f
+	\end{eqnarray}
+
+	<strong>Proof:</strong>
+	\begin{eqnarray*}
+	\nabla \cdot (f\nabla g - g\nabla f) &=& \frac{\partial}{\partial x_1} \left(f \frac{\partial g}{\partial x_1} - g\frac{\partial f}{\partial x_1} \right) + \ldots + \frac{\partial}{\partial x_n} \left(f \frac{\partial g}{\partial x_n} - g\frac{\partial f}{\partial x_n} \right) \\
+	&=& \frac{\partial f}{\partial x_1} \frac{\partial g}{\partial x_1} + f \frac{\partial^2 g}{\partial x_1^2} - \frac{\partial g}{\partial x_1}\frac{\partial f}{\partial x_1} - g \frac{\partial^2 f}{\partial x_1^2} + \ldots + \\
+	&& \frac{\partial f}{\partial x_n} \frac{\partial g}{\partial x_n} + f \frac{\partial^2 g}{\partial x_n^2} - \frac{\partial g}{\partial x_n}\frac{\partial f}{\partial x_n} - g \frac{\partial^2 f}{\partial x_n^2} \\
+	&=& f\left( \frac{\partial^2 g}{\partial x^2_1} + \ldots + \frac{\partial^2 g}{\partial x^2_n}\right) - g\left(\frac{\partial^2 f}{\partial x_1^2} + \ldots + \frac{\partial^2 f}{\partial x^2_n}\right) \\
+	&=& f \Delta g - g \Delta f
+	\end{eqnarray*}
+      </blockquote>
+	
+    </div>
+  </div>
+</div>
+{% endblock main %}

@@ -1,11 +1,11 @@
 <ul class="nav nav-list">
-  <li class="nav-header">Vector Analysis</li>
-  <li class="active"><a href="{% url courses_course "mathematics", "vector_analysis_i" %}">Introduction</a></li>
-  <li><a href="{% url courses_course_chapter "mathematics", "vector_analysis_i", "vectors_and_scalars" %}">Vectors and Scalars</a></li>
+  <li class="nav-header">Vector Analysis I</li>
+  <li{% ifequal chapter "introduction" %} class="active"{% endifequal %}><a href="{% url courses_course "mathematics", "vector_analysis_i" %}">Introduction</a></li>
+  <li{% ifequal chapter "vectors_and_scalars" %} class="active"{% endifequal %}><a href="{% url courses_course_chapter "mathematics", "vector_analysis_i", "vectors_and_scalars" %}">Vectors and Scalars</a></li>
   <li><a href="{% url courses_course_chapter "mathematics", "vector_analysis_i", "vector_operations" %}">Vector Operations</a></li>
   <li><a href="{% url courses_course_chapter "mathematics", "vector_analysis_i", "vector_differentiation" %}">Vector Differentiation</a></li>
   <li><a href="{% url courses_course_chapter "mathematics", "vector_analysis_i", "vector_integration" %}">Vector Integration</a></li>
-  <li><a href="{% url courses_course_chapter "mathematics", "vector_analysis_i", "vector_differential_operators" %}">Vector Differential Operators</a></li>
+  <li{% ifequal chapter "vector_differential_operators" %} class="active"{% endifequal %}><a href="{% url courses_course_chapter "mathematics", "vector_analysis_i", "vector_differential_operators" %}">Vector Differential Operators</a></li>
   <li><a href="{% url courses_course_chapter "mathematics", "vector_analysis_i", "integral_theorems" %}">Integral Theorems</a></li>
   <li><a href="{% url courses_course_chapter "mathematics", "vector_analysis_i", "curvilinear_coordinates" %}">Curvilinear Coordinates</a></li>
   <li><a href="{% url courses_course_chapter "mathematics", "vector_analysis_i", "tensor_analysis" %}">Tensor Analysis</a></li>
