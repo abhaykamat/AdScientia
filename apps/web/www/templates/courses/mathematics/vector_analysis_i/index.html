@@ -1,0 +1,76 @@
+{% extends "base/base.html" %}
+
+{% block main %}
+{% include "base/header.html" %}
+
+<div class="container">
+  <div class="row">
+    <div class="span3">
+      <div class="well sidebar-nav">
+	{% include "courses/mathematics/vector_analysis_i/menu.html" %}
+      </div>
+    </div>
+
+    <div class="span8">
+      <h1>Vector Analysis I</h1>
+
+      <h2>Introduction</h2>
+
+      <h3>Course Overview</h3>
+
+      <p>Why are we interested in studying calculus with vector quantities? It turns out that many areas of 
+	applied mathematics and physics make use of vector quantities to describe physical phenomena. For 
+	instance, the velocity of a fluid flowing through a river and the electromagnetic forces generated
+	by a point charge can both be described via a <em>vector field</em>, a fundamental concept in 
+	vector analysis.</p>
+
+      <p>This second year course will build on the concepts defined in the first year courses 
+	<a href="">Linear Algebra I</a>, <a href="">Analysis I</a> and <a href="">Analysis II</a>. It will 
+	reintroduce the notion of a vector, scalar field and vector field. Then we will proceed to study 
+	elementary vector operations such as the scalar (dot) product, the vector (cross) product and 
+	the triple product using the matrix notation that we are familiar with from Linear Algebra.</p>
+
+      <p>After defining these elementary operations it is necessary to discuss differentiation in the 
+	context of more than one real variable. We will study spatial concepts such as paths, level sets 
+	and graphs. We will then present some fundamental results including <em>Taylor's Theorem</em> and the 
+	<em>Chain Rule</em>. We will then discuss partial differentiation and how it applies to functions 
+	of more than one real variable.</p>
+
+      <p>The next step will be to introduce the vector differential operators - gradient, divergence and curl. 
+	They will all be shown to have a ready physical significance. These tools will form the basic 
+	building blocks of <em>partial differential equations</em> which are used to describe the behaviour of 
+	multi-dimensional physical phenomena. We will also introduce some useful vector identities which will 
+	be indispensible in your later studies in Applied Mathematics.</p>
+
+      <p>Having discussed vector differentiation, we also need to spend time analysing how (and what) we can 
+	integrate in a vector context. We will discuss line, surface and volume integration as extensions of 
+	integration in a one-dimensional space.</p>
+
+      <p>At this stage we are ready to study some fundamental theorems of vector analysis, such as <em>Green's</em>, 
+	<em>Stokes'</em> and <em>Gauss' Theorems</em>. These will allow us to relate integration of functions on 
+	surface boundaries to integration of funtions on spaces contained in these boundaries. These theorems are 
+	indispensible in the study of electromagnetism, fluid dynamics and gravitation where <em>conservative</em> 
+	(zero curl) fields play a large part.</p>
+
+      <p>Up until this stage we have primarily considered Cartesian and polar coordinate systems. We will now show 
+	how to apply the vector techniques we have learnt to any orthogonal curvilinear coordinate system. 
+	In particular we wish to describe the vector differential operators such as grad, div and curl in curvilinear 
+	coordinates and how to change coordinates and equations between systems.</p>
+
+      <p>In the same way that we have generalised vector quantities from scalar quantities, we can generalise 
+	vectors via the notion of a tensor. Physical examples of <em>tensor fields</em> include the stress at any 
+	point in a continuum or the electromagnetic field tensor in the theory of general relativity. We will 
+	outline the different classifications of tensor and how to determine if a quantity truly is of tensor character.</p>
+
+      <p>At each stage of the course we will keep both mathematical rigour and physical application at the forefront, 
+	ensuring that we are both precise enough to avoid ambiguity and sufficiently motivated by any abstract concept 
+	which is applicable to the real world. The course will be largely mathematically oriented, with all theorems 
+	presented with proof (where applicable). However vector analysis was born out of physical applicability and 
+	so we will spend the remaining lectures discussing fluid dynamics and electromagnetism - two areas which 
+	will greatly benefit the development of your applied mathematics insight.</p>
+
+    </div>
+  </div>
+</div>
+{% endblock main %}
+    

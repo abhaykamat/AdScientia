@@ -1,0 +1,126 @@
+{% extends "base/base.html" %}
+
+{% block main %}
+{% include "base/header.html" %}
+
+<div class="container">
+  <div class="row">
+    <div class="span3">
+      <div class="well sidebar-nav">
+	{% include "courses/mathematics/vector_analysis_i/menu.html" %}
+      </div>
+    </div>
+
+    <div class="span8">
+      <h1>Vector Analysis I</h1>
+
+      <h2>Vectors and Scalars</h2>
+
+      <h3>Prerequesites and Notation</h3>
+
+      <h4>Prerequesite Material</h4>
+
+      <p>% Basic Set Theory: Unions, Intersections</p>
+
+      <p>% Calculus of One Variable: Functions, Differentiation, Integration</p>
+      
+      <p>% Linear Algebra: Matrices, Linear Maps, Vector Spaces</p>
+      
+      <h4>Vector Notation</h4>
+      
+      <p>% Boldface for vectors, Function notation, Boldface for Fields</p>
+      
+      <h3>Manipulation</h3>
+      
+      <h4>Elementary Concepts</h4>
+      
+      <p>% Definition of a Scalar</p>
+      <p>% Definition of a Vector</p>
+      
+      <h4>Addition</h4>
+      
+      <p>% Vector Components, Vector Addition</p>
+      
+      <h4>Linear Algebra</h4>
+      
+      <p>% Unit Vectors, Basis, Linear Independence</p>
+      
+      <h3>Vector Spaces, Scalar Fields and Vector Fields</h3>
+      
+      <h4>Vector Spaces</h4>
+      
+      \begin{mydef}
+      A \textbf{vector space} is a set $V$ over a field $\mathbb{F}$ s.t. the following axioms hold
+      \end{mydef}
+      
+      For the entirety of this course we will take our field $\mathbb{F}$ to be the set of real numbers, $\mathbb{R}$.
+      
+      \subsection{Scalar Fields}
+      
+      \begin{mydef}
+      Let $D \subset \mathbb{R}^n$, then $f:D \rightarrow \mathbb{R}$ is a \textbf{scalar field}.
+      \end{mydef}
+      
+      % Example 1 - Temperature Field in a room
+      An example of a scalar field is given by the temperature field $T(\textbf{x})$ at a point $\textbf{x} \in D$, in a room $D$, given by $T:D \subset \mathbb{R}^3 \rightarrow \mathbb{R}$. 
+      
+      % Example 2 - Height Field on a cartographic map
+      Another example is given by the height field $H(\textbf{y})$ at a point $\textbf{y} \in D$, of a mountain on a cartographic map $D$, given by $H:D \subset \mathbb{R}^2 \rightarrow \mathbb{R}$.
+      
+      \subsection{Vector Notation}
+      
+      % Boldface for vectors, Function notation, Boldface for Fields
+      
+      \section{Manipulation}
+      
+      \subsection{Elementary Concepts}
+
+      % Definition of a Scalar
+      % Definition of a Vector
+      
+      \subsection{Addition}
+      
+      % Vector Components, Vector Addition
+      
+      \subsection{Linear Algebra}
+      
+      % Unit Vectors, Basis, Linear Independence
+      
+      \section{Vector Spaces, Scalar Fields and Vector Fields}
+      
+      \subsection{Vector Spaces}
+      
+      \begin{mydef}
+      A \textbf{vector space} is a set $V$ over a field $\mathbb{F}$ s.t. the following axioms hold
+      \end{mydef}
+      
+      For the entirety of this course we will take our field $\mathbb{F}$ to be the set of real numbers, $\mathbb{R}$.
+      
+      \subsection{Scalar Fields}
+      
+      \begin{mydef}
+      Let $D \subset \mathbb{R}^n$, then $f:D \rightarrow \mathbb{R}$ is a \textbf{scalar field}.
+      \end{mydef}
+      
+      % Example 1 - Temperature Field in a room
+      An example of a scalar field is given by the temperature field $T(\textbf{x})$ at a point $\textbf{x} \in D$, in a room $D$, given by $T:D \subset \mathbb{R}^3 \rightarrow \mathbb{R}$. 
+      
+      % Example 2 - Height Field on a cartographic map
+      Another example is given by the height field $H(\textbf{y})$ at a point $\textbf{y} \in D$, of a mountain on a cartographic map $D$, given by $H:D \subset \mathbb{R}^2 \rightarrow \mathbb{R}$.
+      
+      \subsection{Vector Fields}
+      
+      \begin{mydef}
+      Let $D \subset \mathbb{R}^n$, then $f:D \rightarrow \mathbb{R}^m$, $m>1$ is a \textbf{vector field}. 
+      \end{mydef}
+      
+      % Example 1 - Velocity Field of a river
+      An example of a vector field is given by the velocity field $\textbf{U}(\textbf{x})$ at a point $\textbf{x} \in D$, in a river $D$, given by $\textbf{U}:D \subset \mathbb{R}^3 \rightarrow \mathbb{R}$. 
+      
+      % Example 2 - Gravitational Field 
+      Another example is given by the gravitational force field $\textbf{g}(\textbf{r})$ acting on a particle at a point $\textbf{r} \in D$, given by $\textbf{g}:D \subset \mathbb{R}^3 \rightarrow \mathbb{R}$.
+
+    </div>
+  </div>
+</div>
+{% endblock main %}  

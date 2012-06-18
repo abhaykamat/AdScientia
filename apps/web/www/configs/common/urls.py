@@ -24,5 +24,11 @@ urlpatterns += patterns('adscientiawww.core.static.views',
 
 # Degrees
 urlpatterns += patterns('adscientiawww.core.degrees.views',
-    url(r'^degrees/(?P<degree>[A-Za-z0-9]+)/?$', 'viewDegrees', name='degrees_degree'),
+    url(r'^degrees/(?P<degree>[A-Za-z0-9\_]+)/?$', 'viewDegrees', name='degrees_degree'),
+)
+
+# Courses
+urlpatterns += patterns('adscientiawww.core.courses.views',
+    url(r'^courses/(?P<degree>[A-Za-z0-9\_]+)/(?P<course>[A-Za-z0-9\_]+)?$', 'view_course', name='courses_course'),
+    url(r'^courses/(?P<degree>[A-Za-z0-9\_]+)/(?P<course>[A-Za-z0-9\_]+)/(?P<chapter>[A-Za-z0-9\_]+)?$', 'view_course_chapter', name='courses_course_chapter'),
 )
