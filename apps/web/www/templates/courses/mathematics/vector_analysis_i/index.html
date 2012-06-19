@@ -12,11 +12,19 @@
     </div>
 
     <div class="span8">
+      <ul class="breadcrumb">
+	<li>
+          <a href="{% url home_home %}">Home</a> <span class="divider">/</span>
+        </li>
+        <li>
+          <a href="{% url degrees_degree "mathematics" %}">Mathematics</a> <span class="divider">/</span>
+        </li>
+        <li class="active">Vector Analysis I</li>
+      </ul>
+
       <h1>Vector Analysis I</h1>
 
       <h2>Introduction</h2>
-
-      <h3>Course Overview</h3>
 
       <p>Why are we interested in studying calculus with vector quantities? It turns out that many areas of 
 	applied mathematics and physics make use of vector quantities to describe physical phenomena. For 
@@ -25,7 +33,7 @@
 	vector analysis.</p>
 
       <p>This second year course will build on the concepts defined in the first year courses 
-	<a href="">Linear Algebra I</a>, <a href="">Analysis I</a> and <a href="">Analysis II</a>. It will 
+	Linear Algebra I, <a href="{% url courses_course "mathematics", "analysis_i" %}">Analysis I</a> and Analysis II. It will 
 	reintroduce the notion of a vector, scalar field and vector field. Then we will proceed to study 
 	elementary vector operations such as the scalar (dot) product, the vector (cross) product and 
 	the triple product using the matrix notation that we are familiar with from Linear Algebra.</p>
@@ -68,6 +76,12 @@
 	presented with proof (where applicable). However vector analysis was born out of physical applicability and 
 	so we will spend the remaining lectures discussing fluid dynamics and electromagnetism - two areas which 
 	will greatly benefit the development of your applied mathematics insight.</p>
+
+      <p>
+	<a href="{% url courses_course_chapter "mathematics", "vector_analysis_i", "vectors_and_scalars" %}">
+	  <button class="btn btn-large btn-primary">Get Started with Vector Analysis I &raquo;</button>
+	</a>
+      </p>
 
     </div>
   </div>

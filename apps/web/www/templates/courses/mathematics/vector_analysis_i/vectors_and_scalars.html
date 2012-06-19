@@ -12,6 +12,19 @@
     </div>
 
     <div class="span8">
+      <ul class="breadcrumb">
+	<li>
+          <a href="{% url home_home %}">Home</a> <span class="divider">/</span>
+        </li>
+        <li>
+          <a href="{% url degrees_degree "mathematics" %}">Mathematics</a> <span class="divider">/</span>
+        </li>
+	<li>
+          <a href="{% url courses_course "mathematics", "vector_analysis_i" %}">Vector Analysis I</a> <span class="divider">/</span>
+        </li>
+        <li class="active">Vectors and Scalars</li>
+      </ul>
+
       <h1>Vector Analysis I</h1>
 
       <h2>Vectors and Scalars</h2>
@@ -89,6 +102,15 @@
 	% Example 2 - Gravitational Field<br />
 	Another example is given by the gravitational force field $\textbf{g}(\textbf{r})$ acting on a particle at a point $\textbf{r} \in D$, given by $\textbf{g}:D \subset \mathbb{R}^3 \rightarrow \mathbb{R}$.
       </p>
+
+      <ul class="pager">
+	<li class="previous">
+	  <a href="{% url courses_course "mathematics", "vector_analysis_i" %}">&larr; Introduction</a>
+	</li>
+	<li class="next">
+	  <a href="{% url courses_course_chapter "mathematics", "vector_analysis_i", "vector_operations" %}">Vector Operations &rarr;</a>
+	</li>
+      </ul>
 
     </div>
   </div>

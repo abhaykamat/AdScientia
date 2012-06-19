@@ -9,116 +9,124 @@
       <div class="well sidebar-nav">
         <ul class="nav nav-list">
 	  <li class="nav-header">Overview</li>
-	  <li class="active"><a href="">Introduction</a></li>
-	  <li><a href="">Course Outlines</a></li>
-	  <li><a href="">Degree Programme</a></li>
+	  <li class="active"><a href="{% url degrees_degree "mathematics" %}">Introduction</a></li>
+	  <li>Course Outlines</li>
+	  <li>Degree Programme</li>
           <li class="nav-header">Year 1</li>
-	  <li><a href="">Algebra I</a></li>
+	  <li>Algebra I</li>
 	  <li><a href="{% url courses_course "mathematics", "analysis_i" %}">Analysis I</a></li>
-	  <li><a href="">Analysis II</a></li>
-	  <li><a href="">Classical Mechanics I</a></li>
-	  <li><a href="">Differential Equations I</a></li>
-	  <li><a href="">Foundations of Mathematics</a></li>
-          <li><a href="">Geometry I</a></li>
-	  <li><a href="">Linear Algebra I</a></li>
-	  <li><a href="">Probability I</a></li>
+	  <li>Analysis II</li>
+	  <li>Classical Mechanics I</li>
+	  <li>Differential Equations I</li>
+	  <li>Foundations of Mathematics</li>
+          <li>Geometry I</li>
+	  <li>Linear Algebra I</li>
+	  <li>Probability I</li>
           <li class="nav-header">Year 2</li>
-	  <li><a href="">Algebra II</a></li>
-          <li><a href="">Analysis III</a></li>
-	  <li><a href="">Classical Mechanics II</a></li>
-	  <li><a href="">Combinatorics</a></li>
-	  <li><a href="">Differential Equations II</a></li>
-	  <li><a href="">Geometry II</a></li>
-          <li><a href="">Linear Algebra II</a></li>
-	  <li><a href="">Metric Spaces</a></li>
-	  <li><a href="">Number Theory</a></li>
-	  <li><a href="">Partial Differential Equations I</a></li>
-	  <li><a href="">Probability II</a></li>
-	  <li><a href="">Statistics I</a></li>
-	  <li><a href="">Vector Analysis I</a></li>
-	  <li><a href="">Vector Analysis II</a></li>
+	  <li>Algebra II</li>
+          <li>Analysis III</li>
+	  <li>Classical Mechanics II</li>
+	  <li>Combinatorics</li>
+	  <li>Differential Equations II</li>
+	  <li>Geometry II</li>
+          <li>Linear Algebra II</li>
+	  <li>Metric Spaces</li>
+	  <li>Number Theory</li>
+	  <li>Partial Differential Equations I</li>
+	  <li>Probability II</li>
+	  <li>Statistics I</li>
+	  <li><a href="{% url courses_course "mathematics", "vector_analysis_i" %}">Vector Analysis I</a></li>
+	  <li>Vector Analysis II</li>
           <li class="nav-header">Year 3</li>
-	  <li><a href="">Classical Mechanics III</a></li>
-	  <li><a href="">Complex Analysis</a></li>
-          <li><a href="">Continuum Mechanics</a></li>
-	  <li><a href="">Differential Equations III</a></li>
-	  <li><a href="">Differential Geometry</a></li>
-	  <li><a href="">Fluid Dynamics</a></li>
-          <li><a href="">Fractal Geometry</a></li>
-          <li><a href="">Galois Theory</a></li>
-	  <li><a href="">Groups I</a></li>
-	  <li><a href="">Knot Theory</a></li>
-	  <li><a href="">Linear Functional Analysis</a></li>
-	  <li><a href="">Measure Theory</a></li>
-          <li><a href="">Numerical Analysis</a></li>
-	  <li><a href="">Partial Differential Equations II</a></li>
-          <li><a href="">Rings and Modules I</a></li>
-	  <li><a href="">Set Theory</a></li>
-          <li><a href="">Statistics II</a></li>
-	  <li><a href="">Topology </a></li>
+	  <li>Classical Mechanics III</li>
+	  <li>Complex Analysis</li>
+          <li>Continuum Mechanics</li>
+	  <li>Differential Equations III</li>
+	  <li>Differential Geometry</li>
+	  <li>Fluid Dynamics</li>
+          <li>Fractal Geometry</li>
+          <li>Galois Theory</li>
+	  <li>Groups I</li>
+	  <li>Knot Theory</li>
+	  <li>Linear Functional Analysis</li>
+	  <li>Measure Theory</li>
+          <li>Numerical Analysis</li>
+	  <li>Numerical Linear Algebra</li>
+	  <li>Partial Differential Equations II</li>
+          <li>Rings and Modules I</li>
+	  <li>Set Theory</li>
+          <li>Statistics II</li>
+	  <li>Topology </li>
 	  <li class="nav-header">Year 4</li>
-	  <li><a href="">Algebraic Geometry</a></li>
-	  <li><a href="">Algebraic Topology</a></li>
-	  <li><a href="">Computational PDE</a></li>
-	  <li><a href="">Distribution Theory</a></li>
-	  <li><a href="">Dynamical Systems</a></li>
-	  <li><a href="">Elliptic Curves</a></li>
-	  <li><a href="">Ergodic Theory</a></li>
-	  <li><a href="">Fourier Analysis</a></li>
-	  <li><a href="">Groups II</a></li>
-	  <li><a href="">Hyperbolic Geometry</a></li>
-	  <li><a href="">Lie Groups</a></li>
-	  <li><a href="">Manifolds</a></li>
-	  <li><a href="">Partial Differential Equations III</a></li>
-	  <li><a href="">Quantum Dynamics</a></li>
-	  <li><a href="">Riemann Surfaces</a></li>
-	  <li><a href="">Rings and Modules II</a></li>
-	  <li><a href="">Stochastic Analysis</a></li>
+	  <li>Algebraic Geometry</li>
+	  <li>Algebraic Topology</li>
+	  <li>Distribution Theory</li>
+	  <li>Dynamical Systems</li>
+	  <li>Elliptic Curves</li>
+	  <li>Ergodic Theory</li>
+	  <li>Fourier Analysis</li>
+	  <li>Groups II</li>
+	  <li>Hyperbolic Geometry</li>
+	  <li>Lie Groups</li>
+	  <li>Manifolds</li>
+	  <li>Numerical PDE</li>
+	  <li>Partial Differential Equations III</li>
+	  <li>Quantum Dynamics</li>
+	  <li>Riemann Surfaces</li>
+	  <li>Rings and Modules II</li>
+	  <li>Stochastic Analysis</li>
         </ul>
       </div>
     </div>
 
     <div class="span8">
+      <ul class="breadcrumb">
+        <li>
+          <a href="{% url home_home %}">Home</a> <span class="divider">/</span>
+        </li>
+	<li class="active">Mathematics</li>
+      </ul>
+      
       <h1>Mathematics</h1>
       <h2>Four Year Undergraduate Degree Programme - MSc/MMath</h2>
       <p>
-	Mathematics, as a subject, concerns itself with the abstract concepts of Quantity, Structure, Shape and Change [<a href="http://en.wikipedia.org/wiki/Mathematics">http://en.wikipedia.org/wiki/Mathematics</a>].
+	Mathematics, as a subject, concerns itself with the abstract concepts of Quantity, Structure, Shape and Change<sup><a href="http://en.wikipedia.org/wiki/Mathematics">[1]</a></sup>.
 	The AdScientia Mathematics degree course provides resources equivalent to a top-tier masters level education in these topics. 
       </p> 
 
       <h3>Year 1</h3>
 
       <p>
-	The course begins in Year 1 with a set of introductory topics around these subjects. <a href="">Foundations of Mathematics</a> introduces you to some basic
+	The course begins in Year 1 with a set of introductory topics around these subjects. Foundations of Mathematics introduces you to some basic
 	concepts, such as sets of numbers, maps between these sets and notation to help simplify their expression and relation. It will form the basis for the rest
-	of the degree programme. <a href="">Algebra I</a>, <a href="">Analysis I</a>, <a href="">Geometry</a> and <a href="">Linear Algebra I</a> will provide a
+	of the degree programme. Algebra I, Analysis I, Geometry and Linear Algebra I will provide a
 	deep overview of the concepts of symmetry, groups, set theory, sequences & series, limits, linear transformations/matrices and vector spaces; basic tools
 	necessary for further study.
       </p>
 
       <p>
-	<a href="">Differential Equations I</a>, <a href="">Classicial Mechanics I</a> and <a href="">Probability I</a> are three application areas that make use
+	Differential Equations I, Classicial Mechanics I and Probability I are three application areas that make use
 	of the theoretical content studied in the aforementioned modules.
       </p>
 
       <h3>Year 2</h3>
 
       <p>
-	In Year 2 the real analytical concepts introduced in <a href="">Analysis I</a> and <a href="">Analysis II</a> are extended to multi-dimensional spaces
-	in <a href="">Vector Analysis I</a> and <a href="">Vector Analysis II</a>. In <a href="">Metric Spaces</a> more abstract settings which involve a 
-	notion of distance will be explored. <a href="">Analysis III</a> will put Riemann integration on a firmer footing.
+	In Year 2 the real analytical concepts introduced in Analysis I and Analysis II are extended to multi-dimensional spaces
+	in <a href="{% url courses_course "mathematics", "vector_analysis_i" %}">Vector Analysis I</a> and Vector Analysis II. In Metric Spaces more abstract settings which involve a 
+	notion of distance will be explored. Analysis III will put Riemann integration on a firmer footing.
       </p>
 
       <p>
-	On the algebraic side <a href="">Algebra II</a> and <a href="">Linear Algebra II</a> will introduce matrix decomposition, as well as further explore
-	groups. Rings and modules will also briefly be touched upon. <a href="">Geometry II</a> will introduce projective geometry and more abstract
+	On the algebraic side Algebra II and Linear Algebra II will introduce matrix decomposition, as well as further explore
+	groups. Rings and modules will also briefly be touched upon. Geometry II will introduce projective geometry and more abstract
 	geometrical entities.
       </p>
 
       <p>
-	There are plenty of applied options in Year 2. <a href="">Differential Equations II</a>, <a href="">Classicial Mechanics II</a> and <a href="">Probability II</a>
-	continue where the respective Year 1 courses left off. <a href="">Combinatorics</a> and <a href="">Number Theory</a> are two more theoretical applications involving
-	quantity as a concept. <a href="">Partial Differential Equations I</a> and <a href="">Statistics I</a> offer two more applied courses which lead onto deeper areas
+	There are plenty of applied options in Year 2. Differential Equations II, Classicial Mechanics II and Probability II
+	continue where the respective Year 1 courses left off. Combinatorics and Number Theory are two more theoretical applications involving
+	quantity as a concept. Partial Differential Equations I and Statistics I offer two more applied courses which lead onto deeper areas
 	of mathematics.
       </p>
 
@@ -128,32 +136,32 @@
 
       <p>
 	The core courses for further studies of analysis include 
-	<a href="">Complex Analysis</a>, which concerns itself with analytical concepts such as convergence and continuity, on the 
-	complex plane; <a href="">Linear Functional Analysis</a>, which explores vector spaces in an infinite-dimensional setting;
-	<a href="">Measure Theory</a>, which introduces alternative methods of characterising the size of sets as well as methods
-	of integrating functions that do not permit a Riemann integral; and finally <a href="">Numerical Analysis</a> which 
+	Complex Analysis, which concerns itself with analytical concepts such as convergence and continuity, on the 
+	complex plane; Linear Functional Analysis, which explores vector spaces in an infinite-dimensional setting;
+	Measure Theory, which introduces alternative methods of characterising the size of sets as well as methods
+	of integrating functions that do not permit a Riemann integral; and finally Numerical Analysis which 
 	provides a framework for quantifying error growth in certain approximation situations.</p>
 
       <p>
-	On the algebraic path courses include <a href="">Galois Theory</a>, which provides a connection between fieds and groups;
-	<a href="">Groups I</a>, which delves deeper into group concepts beyond those elucidated in <a href="">Algebra II</a>;
-	<a href="">Rings and Modules I</a>, which introduces the algebraic structure known as a ring; <a href="">Set Theory</a>,
+	On the algebraic path courses include Galois Theory, which provides a connection between fieds and groups;
+	Groups I, which delves deeper into group concepts beyond those elucidated in Algebra II;
+	Rings and Modules I, which introduces the algebraic structure known as a ring; Set Theory,
 	which outlines the axiomatic framework of mathematical sets on a more fundamental level.
       </p>
 
       <p>
-	The core geometry courses include <a href="">Differential Geometry</a>, which explains concepts concerning curves and
-	surfaces in $\mathbb{R}^3$; <a href="">Fractal Geometry</a>, which studies fractals - geometric entities which may
-	possess non-integral dimension; <a href="">Knot Theory</a>, a course which discusses mathematical knots, or topological
-	braids; <a href="">Topology</a>, an introduction to more abstract spaces, that have no notion of distance, but where
+	The core geometry courses include Differential Geometry, which explains concepts concerning curves and
+	surfaces in $\mathbb{R}^3$; Fractal Geometry, which studies fractals - geometric entities which may
+	possess non-integral dimension; Knot Theory, a course which discusses mathematical knots, or topological
+	braids; Topology, an introduction to more abstract spaces, that have no notion of distance, but where
 	continuity can still be discussed.
       </p>
 
       <p>
-	The set of applied courses include continuations via <a href="">Classical Mechanics III</a>, <a href="">Differential Equations III</a>,
-	<a href="">Partial Differential Equations II</a> and <a href="">Statistics II</a>. <a href="">Continuum Mechanics</a> and 
-	<a href="">Fluid Dynamics</a> both attempt to formulate mathematical models for solids, liquids and gases under certain types of stress
-	and strain, being highly relevant in the fields of <a href="">Physics</a> and <a href="">Engineering</a>.
+	The set of applied courses include continuations via Classical Mechanics III, Differential Equations III,
+	Partial Differential Equations II and Statistics II. Continuum Mechanics and 
+	Fluid Dynamics both attempt to formulate mathematical models for solids, liquids and gases under certain types of stress
+	and strain, being highly relevant in the fields of Physics and Engineering.
       </p>
 
       <h3>Year 4</h3>

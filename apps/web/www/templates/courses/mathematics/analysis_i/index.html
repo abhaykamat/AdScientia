@@ -7,16 +7,67 @@
   <div class="row">
     <div class="span3">
       <div class="well sidebar-nav">
-	<ul class="nav nav-list">
-          <li class="nav-header">Overview</li>
-          <li class="active"><a href="">Introduction</a></li>
-        </ul>
+	{% include "courses/mathematics/analysis_i/menu.html" %}
       </div>
     </div>
 
     <div class="span8">
+      <ul class="breadcrumb">
+	<li>
+	  <a href="{% url home_home %}">Home</a> <span class="divider">/</span>
+	</li>
+	<li>
+	  <a href="{% url degrees_degree "mathematics" %}">Mathematics</a> <span class="divider">/</span>
+	</li>
+	<li class="active">Analysis I</li>
+      </ul>
+
       <h1>Analysis I</h1>
-      <h2>Introduction to Real Analysis</h2>
+
+      <h2>Introduction</h2>
+
+      <p>Analysis is an extremely important part of mathematics. It is our first formal introduction to
+	inequalities, sequences of numbers, infinite sums of numbers (known as series) and a deep
+	concept known as completeness.</p>
+
+      <p>Here are some questions we can try to answer with the theory of Real Analysis:</p>
+
+      <ul class="copy-list">
+	<li>What is infinity? Are there different types of infinity?</li>
+	<li>What is a derivative? What is an infinitesimal quantity? Do all functions have derivatives?</li>
+	<li>What happens if I sum up an infinite series of numbers? Do I always get an infinite result?</li>
+	<li>How many numbers are there in a real number line? How many numbers are there between two real numbers?</li>
+      </ul>
+
+      <p>We will begin with definitions of certain sets of numbers: the natural numbers $\mathbb{N}$, the integers 
+	$\mathbb{Z}$, the rational numbers $\mathbb{Q}$ and the real numbers $\mathbb{R}$. Then we will look at
+	inequalities. Inequalities are mathematical relations that help us determine
+	size and ordering of various quantities. They provide the mathematical framework for bounding one quantity by
+	another - an essential tool if we are to discuss sequences and series of numbers.</p>
+
+      <p>After inequalities we will study sequences of numbers. A sequence is a list of elements that may possess a
+	pattern. The sequence may be bounded or it may continually increase or decrease in size. We will characterise
+	when this is the case using our inequalities toolkit.</p>
+
+      <p>The real number line has a very interesting geometry. We will investigate it and try to determine
+	how "infinite" the real line is. We will discuss what happens when we "cut" the real line. We will define
+	the Axiom of Completeness and subsequently utilise it to gain better insight into the structure of the real line.</p>
+
+      <p>Finally, we will look at series - infinite sums of numbers. Our main task will be to determine if any 
+	series have a finite sum or whether the values sum to infinity. We can use our knowledge about sequences and
+	inequalities to help us.</p>
+
+      <h4>What's next?</h4>
+
+      <p>In Analysis II, the main focus will be on functions from $\mathbb{R}$ to itself, i.e. functions $f$ of the
+	form $f:\mathbb{R}\rightarrow\mathbb{R}$. We will study the concepts of continuity and convergence of functions
+	as well as define the derivative from first principles.</p>
+
+      <p>
+        <a href="{% url courses_course_chapter "mathematics", "analysis_i", "inequalities" %}">
+          <button class="btn btn-large btn-primary">Get Started with Analysis I &raquo;</button>
+        </a>
+      </p>
 
     </div>
   </div>

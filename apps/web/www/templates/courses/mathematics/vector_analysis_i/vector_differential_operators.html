@@ -12,6 +12,19 @@
     </div>
 
     <div class="span8">
+      <ul class="breadcrumb">
+        <li>
+          <a href="{% url home_home %}">Home</a> <span class="divider">/</span>
+        </li>
+        <li>
+          <a href="{% url degrees_degree "mathematics" %}">Mathematics</a> <span class="divider">/</span>
+        </li>
+	<li>
+          <a href="{% url courses_course "mathematics", "vector_analysis_i" %}">Vector Analysis I</a> <span class="divider">/</span>
+        </li>
+        <li class="active">Vector Differential Operators</li>
+      </ul>
+
       <h1>Vector Analysis I</h1>
       <h2>Vector Differential Operators</h2>
 
@@ -767,6 +780,15 @@
 	&=& f \Delta g - g \Delta f
 	\end{eqnarray*}
       </blockquote>
+
+      <ul class="pager">
+        <li class="previous">
+          <a href="{% url courses_course_chapter "mathematics", "vector_analysis_i", "vector_integration" %}">&larr; Vector Integration</a>
+        </li>
+        <li class="next">
+          <a href="{% url courses_course_chapter "mathematics", "vector_analysis_i", "integral_theorems" %}">Integral Theorems &rarr;</a>
+        </li>
+      </ul>
 	
     </div>
   </div>

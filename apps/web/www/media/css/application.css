@@ -1,4 +1,22 @@
-p, blockquote {
-    font: 15px/25px Georgia, serif;
-    margin-bottom: 15px;
+h1, h2, h3, h4 {
+    margin-bottom: 12px;
 }
+
+ul.copy-list li {
+    font: 15px/25px Georgia, serif;
+    margin-bottom: 10px;
+}
+
+p, blockquote {
+   font: 15px/25px Georgia, serif;
+   margin-bottom: 15px;
+}
+
+.container .row .well.sidebar-nav ul.nav.nav-list li {
+    color: #bbb;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    font: 13px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin-bottom: 0px;
+}
+
