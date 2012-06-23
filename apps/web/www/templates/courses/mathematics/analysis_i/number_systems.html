@@ -1,0 +1,83 @@
+{% extends "base/base.html" %}
+
+{% block main %}
+{% include "base/header.html" %}
+
+<div class="container">
+  <div class="row">
+    <div class="span3">
+      <div class="well sidebar-nav">
+        {% include "courses/mathematics/analysis_i/menu.html" %}
+      </div>
+    </div>
+
+    <div class="span8">
+      <ul class="breadcrumb">
+        <li>
+          <a href="{% url home_home %}">Home</a> <span class="divider">/</span>
+        </li>
+        <li>
+          <a href="{% url degrees_degree "mathematics" %}">Mathematics</a> <span class="divider">/</span>
+        </li>
+	<li>
+          <a href="{% url courses_course "mathematics", "analysis_i" %}">Analysis I</a> <span class="divider">/</span>
+	  </li>
+        <li class="active">Number Systems</li>
+      </ul>
+
+      <h1>Analysis I</h1>
+
+      <h2>Number Systems</h2>
+
+      
+
+      <h3>Natural Numbers</h3>
+
+      <h3>The Integers</h3>
+
+      <h3>Rational Numbers</h3>
+
+      <h3>Real Numbers</h3>
+
+      <blockquote>
+	<strong>Real Numbers Axioms</strong><br />
+	<ol class="copy-list">
+	  <li>$\forall x, y \in \mathbb{R},\hspace{4 mm} x+y \in \mathbb{R}$ and $xy \in \mathbb{R}$.</li>
+	  <li>$\forall x, y, z \in \mathbb{R}:\hspace{4 mm} (x+y)+z = x+(y+z)$.</li>
+	  <li>$\forall x,y \in \mathbb{R}:\hspace{4 mm} x+y = y+x$.</li>
+	  <li>$\exists 0 \in \mathbb{R}$ s.t. $\hspace{4 mm} x+0=0+x=x\hspace{4 mm}\forall x \in \mathbb{R}$.</li>
+	  <li>$\forall x \in \mathbb{R}, \exists (-x) \in \mathbb{R}$ s.t. $\hspace{4 mm} x+ (-x) = (-x) + x = 0$.</li>
+	  <li>$\forall x,y,z \in \mathbb{R},\hspace{4 mm}(xy)z=x(yz)$.</li>
+	  <li>$\forall x,y \in \mathbb{R},\hspace{4 mm}xy=yx$.</li>
+	  <li>$\exists 1 \in \mathbb{R}$ s.t. $\hspace{4 mm}x \cdot 1 = 1 \cdot x,\hspace{4 mm} \forall x \in \mathbb{R}$.</li>
+	  <li>$\forall x \in \mathbb{R}$ s.t. $x \neq 0, \exists (x^{-1}) \in \mathbb{R}$ s.t. $\hspace{4 mm} x(x^{-1}) = (x^{-1})x = 1$.</li>
+	  <li>$\forall x,y,z \in \mathbb{R}\hspace{4 mm} x(y+z)=xy+xz$.</li>
+	</ol>
+      </blockquote>
+
+      <blockquote>
+	<strong>Order Relations Axions</strong><br />
+	<ol class="copy-list">
+	  <li>$\forall x,y \in \mathbb{R},$ either $x&lt;y$, $x=y$ or $y&lt;x$.</li>
+	  <li>If $x&lt;y$ and $y&lt;z$ then $x&lt;z$.</li>
+	  <li>If $x&lt;y$ and $z&gt;0$ then $xz &lt; yz$.</li>
+	</ol>
+      </blockquote>
+      
+      <h3>Inequalities</h3>
+
+      <h3>Mathematical Induction</h3>
+
+      <ul class="pager">
+	<li class="previous">
+	    <a href="{% url courses_course "mathematics", "analysis_i" %}">&larr; Introduction</a>
+        </li>
+        <li class="next">
+          <a href="{% url courses_course_chapter "mathematics", "analysis_i", "sequences" %}">Sequences &rarr;</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</div>
+{% endblock main %}

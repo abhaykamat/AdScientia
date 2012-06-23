@@ -2,7 +2,8 @@ h1, h2, h3, h4 {
     margin-bottom: 12px;
 }
 
-ul.copy-list li {
+ul.copy-list li,
+ol.copy-list li {
     font: 15px/25px Georgia, serif;
     margin-bottom: 10px;
 }
