@@ -1,0 +1,142 @@
+{% extends "base/base.html" %}
+
+{% block main %}
+{% include "base/header.html" %}
+
+<div class="container">
+  <div class="row">
+    <div class="span3">
+      <div class="well sidebar-nav">
+        {% include "courses/mathematics/analysis_i/menu.html" %}
+      </div>
+    </div>
+
+    <div class="span8">
+      <ul class="breadcrumb">
+        <li>
+          <a href="{% url home_home %}">Home</a> <span class="divider">/</span>
+        </li>
+        <li>
+          <a href="{% url degrees_degree "mathematics" %}">Mathematics</a> <span class="divider">/</span>
+        </li>
+	<li>
+          <a href="{% url courses_course "mathematics", "analysis_i" %}">Analysis I</a> <span class="divider">/</span>
+	  </li>
+        <li class="active">Sequences</li>
+      </ul>
+
+      <h1>Analysis I</h1>
+
+      <h2>Sequences</h2>
+
+      <p>One of the most fundamental concepts in Analysis, and mathematics in general, is a <em>sequence</em>. A sequence can be thought of informally as an infinitely-long ordered list of elements picked from a certain set. For instance if our set is $\mathbb{Q}$ then we can construct an infinite list of rational numbers with a certain behaviour. We could also choose $\mathbb{N}$, $\mathbb{Z}$ or $\mathbb{R}$ if we are interested in numerical sequences. However, sequences are not restricted to containing only numbers. We could also construct a sequence consisting of <em>vectors</em>, <em>functions</em> or even more abstract sets.</p>
+
+      <p>Sequences are used everywhere in mathematics and for a variety of purposes, primarily though to count elements in sets and determine their "size" or <em>cardinality</em>. We will be looking at sequences and seeing how they behave as we count higher and higher, attempting to investigate their behaviour as we count "infinitely" far along the list.</p>
+
+      <p>In this Analysis course, we will only be looking at infinite numerical sequences, where our sequences consist of elements from $\mathbb{N}$, $\mathbb{Z}$, $\mathbb{Q}$ or $\mathbb{R}$. In later courses we will investigate sequences of more abstract sets.</p>
+
+      <p>A formal definition of an infinite sequence states that it is a map from the natural numbers to another set. Thus all infinite sequences are <em>countable</em>:</p>
+
+      <blockquote>
+	<strong>Definition (Sequence):</strong>
+	A sequence $(a_n)$ of a set $S$ is a map $a_n : \mathbb{N} \rightarrow S$.
+      </blockquote>
+
+      <p>In general we will denote sequences by $(a_n)_{n\in\mathbb{N}}$ or simply $(a_n)$, where it is clear from the context that our counting variable $n$ is a member of the natural numbers $\mathbb{N}$. Here are some examples of sequences:</p>
+
+      <blockquote>
+	<strong>Example 1</strong><br />
+	$a_n = (n) = \left(1,2,3,4,5,...\right)$
+      </blockquote>
+
+      <blockquote>
+	<strong>Example 2</strong><br />
+	$b_n = (n^2) = \left(1,4,9,16,25,...\right)$
+      </blockquote>
+
+      <blockquote>
+	<strong>Example 3</strong><br />
+	$c_n = ((-1)^{n}) = \left(-1,1,-1,1,-1,...\right)$
+      </blockquote>
+
+      <blockquote>
+	<strong>Example 4</strong><br />
+	$d_n = (n/(n+1)) = \left(\frac{1}{2},\frac{2}{3},\frac{3}{4},\frac{4}{5},\frac{5}{6},...\right)$
+      </blockquote>
+
+      <p>It is natural to consider what will happen to a sequence as we increase $n$. If we take Example 4, it is clear that as $n$ increases, the elements of the sequence are becoming closer and closer to the number $1$. If we take $n=1000$, for example, the sequence element would be $d_{1000} = \frac{1000}{1001} \approx 0.999$, which is very close to $1$.</p>
+
+      <h3>Limit of a Sequence</h3>
+
+      <p>What if we think about n "equalling" $\infty$? Since $\infty$ is not a member of the natural numbers (i.e. $\infty \notin \mathbb{N}$), we have to state how our sequence behaves as $n$ <em>approaches</em> $\infty$, which we denote as $n \rightarrow \infty$. It is apparent, although not proven formally, that $d_n$ will become $1$ as $n \rightarrow \infty$. Thus we say that the <em>limit</em> of the sequence $d_n$ is $\infty$. We can write this more succintly using the "lim" notation:</p>
+
+      <p>
+	\begin{eqnarray*}
+	\lim_{n\rightarrow \infty} d_n = \lim_{n\rightarrow \infty} \left(\frac{n}{n+1}\right) = 1
+	\end{eqnarray*}
+      </p>
+
+      <p>The above formal notation states that the limit as $n \rightarrow \infty$ of our sequence $d_n$ is equal to $1$.</p>
+
+      <p>For Example 3, the numbers are alternating between -1 and 1. This means that the sequence $c_n$ does not have a limit.</p>
+
+      <p>For the sequences $a_n$ and $b_n$ the values continually increase as $n\rightarrow \infty$, although at different <em>rates</em>. We can see that $b_n$ gets larger far more quickly than $a_n$. We say that $a_n$ and $b_n$ tend to $\infty$.</p>
+
+      <p>Although we have described informally the concept of a limit, we haven't placed it on firm mathematical ground. The formal definition for a limit involves the concept of <em>distance</em> between elements of the sequence. In our previous discussion on inequalities, we made use of the <em>absolute</em> or <em>modulus</em> operator to describe a number's magnitude.</p>
+
+      <p>Given that our prior discussion on sequences (and in particular $d_n$) centred on the elements of the sequence becoming closer and closer to $1$, a natural step is to ask what happens to the distance between the limit element (if it exists) and successive elements of the sequence. We should expect that if our sequence $a_n$ has a limit (which we will denote as $a$), then successive elements $a_n$ will become closer to $a$, i.e. $|a_n - a|$ will decrease in size.</p>
+
+      <p>The key concept in the definition of a sequence limit is to realise that if $a_n$ has a limit $a$, then by increasing $n$ to a sufficiently large size, we can reduce the distance between successive elements of the sequence and our limit to whatever size we wish. Informally, as $n$ increases, the long-term distance between $a_n$ and $a$ decreases. If we pick a particularly small distance, which we can call $\epsilon$, then we should be able to find a number, which we call $N$, such that if our counting variable $n$ is greater than this number $N$, then the distance between $a_n$ and $a$ will always be less than $\epsilon$.</p>
+
+      <p>This is not an intuitive definition on first glance. It requires a bit of thought before it is fully understood. It states that if $a_n$ has a limit $a$, then for any arbitrarily small distance $\epsilon$ that we pick, there exists a particular number $N$ after which the distance between $a_n$ and $a$ is less than $\epsilon$, as long as we have moved further along the counting sequence than $N$:</p>
+
+      <blockquote>
+	<strong>Definition (Limit of a Sequence)</strong><br />
+	A sequence $a_n$ has a limit $a$ if, $\forall \epsilon &gt; 0, \exists N \in \mathbb{N}$ s.t. $|a_n - a| &lt; \epsilon$ whenever $n > N$.
+      </blockquote>
+      
+      <p>% Use d_n to show that we can determine the limit</p>
+
+      <p>% Give an example of a sequence which does NOT have a limit (and show epsilon/N arg)</p>
+      
+      <blockquote>
+	<strong>Theorem</strong><br />
+	Let $(a_n) \rightarrow a$ as $n \rightarrow \infty$. Then $(|a_n|) \rightarrow |a|$ as $n \rightarrow \infty$.<br /></br />
+	<strong>Proof</strong><br />
+	Given that $\forall \epsilon > 0, \exists N \in \mathbb{N}$ s.t. $|a_n - a| < \epsilon$, $\forall n > N$, we can say that $\left||a_n|-|a|\right| \leq |a_n - a|$, utilising our results from the Inequalities section. Thus:
+	\begin{eqnarray*}
+        \left||a_n|-|a|\right| &\leq& |a_n - a| < \epsilon
+	\end{eqnarray*}
+        which holds $\forall n > N$. Hence we can make the distance between $|a_n|$ and $|a|$ as small as necessary. Thus $(|a_n|) \rightarrow |a|$. 
+      </blockquote>
+
+      <p>% Theorem a_n convergent, then |a_n| convergent, show that converse does not hold, give an example</p>
+
+      <p>% Theorem a_n -> 0 iff |a_n| -> 0</p>
+      
+      <p>% Definition of a divergent sequence</p>
+
+      <blockquote>
+	<strong>Theorem</strong><br />
+	Let $(a_n)$ be a sequence. If $a_n > 0, \forall n \geq 1$, then $(a_n) \rightarrow \infty \Leftrightarrow (1/a_n) \rightarrow 0$.<br /><br />
+	<strong>Proof</strong><br />
+	We will show first that if $(a_n)\rightarrow \infty$, then $(1/a_n)\rightarrow 0$. Consider an $\epsilon > 0$. Since $\epsilon$ is positive, $1/\epsilon > 0$ is still positive. Since we have that $\exists N$ s.t. $a_n > 1/\epsilon, \forall n > N$ and that both $a_n>0$ as well as $1/\epsilon > 0$, we can say, $\forall n > N$:
+	\begin{eqnarray*}
+        \left|\frac{1}{a_n} - 0\right| &=& \left|\frac{1}{a_n}\right| = \frac{1}{a_n} < \epsilon
+	\end{eqnarray*}
+        Thus $(1/a_n)\rightarrow 0$ and we have shown the first side. Now let us suppose that $(1/a_n) \rightarrow 0$. If we choose $M>0$, then as before $1/M>0$. We know that $\exists N$ s.t. $\left|1/a_n\right| < 1/M, \forall n>N$, and that $\left|1/a_n\right| = 1/a_n$, thus it can be seen that $a_n > M, \forall n>N$ and hence $(a_n)\rightarrow \infty$.
+      </blockquote>
+
+      <ul class="pager">
+	<li class="previous">
+	    <a href="{% url courses_course_chapter "mathematics", "analysis_i", "number_systems" %}">&larr; Number Systems</a>
+        </li>
+        <li class="next">
+          <a href="{% url courses_course_chapter "mathematics", "analysis_i", "series" %}">Series &rarr;</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</div>
+{% endblock main %}
