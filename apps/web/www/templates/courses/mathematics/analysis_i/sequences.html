@@ -29,6 +29,11 @@
 
       <h2>Sequences</h2>
 
+      <div class="alert alert-info">
+	<h3>Historical Note</h3>
+	<p>% Talk about Cauchy, Gauss, Weierstrauss and Bolzano.</p>
+      </div>
+
       <p>One of the most fundamental concepts in Analysis, and mathematics in general, is a <em>sequence</em>. A sequence can be thought of informally as an infinitely-long ordered list of elements picked from a certain set. For instance if our set is $\mathbb{Q}$ then we can construct an infinite list of rational numbers with a certain behaviour. We could also choose $\mathbb{N}$, $\mathbb{Z}$ or $\mathbb{R}$ if we are interested in numerical sequences. However, sequences are not restricted to containing only numbers. We could also construct a sequence consisting of <em>vectors</em>, <em>functions</em> or even more abstract sets.</p>
 
       <p>Sequences are used everywhere in mathematics and for a variety of purposes, primarily though to count elements in sets and determine their "size" or <em>cardinality</em>. We will be looking at sequences and seeing how they behave as we count higher and higher, attempting to investigate their behaviour as we count "infinitely" far along the list.</p>
@@ -64,7 +69,54 @@
 	$d_n = (n/(n+1)) = \left(\frac{1}{2},\frac{2}{3},\frac{3}{4},\frac{4}{5},\frac{5}{6},...\right)$
       </blockquote>
 
-      <p>It is natural to consider what will happen to a sequence as we increase $n$. If we take Example 4, it is clear that as $n$ increases, the elements of the sequence are becoming closer and closer to the number $1$. If we take $n=1000$, for example, the sequence element would be $d_{1000} = \frac{1000}{1001} \approx 0.999$, which is very close to $1$.</p>
+      <p>It is natural to consider what will happen to a sequence as we increase $n$. If we take Example 1, it is clear that as $n$ increases, the elements of the sequence are getting larger. Consider picking a number, $N\in\mathbb{N}$. Eventually the sequence will go beyond this number. In fact, no matter which $N$ you pick, the sequence will always eventually exceed this value. The same holds true for Example 2. We call sequences of this type <em>divergent</em>. More formally:</p>
+
+      <blockquote>
+	<strong>Definition (Divergent Sequence to Infinity)</strong><br />
+	A sequence $(a_n)$ is <strong>divergent to infinity</strong> (or <em>tends to infinity</em>) if and only if, for any $K\in\mathbb{N}$, there exists $N\in\mathbb{N}$, where $N = N(K)$, such that $a_n > K$, for <em>all</em> $n>N$. This is written as $a_n \rightarrow \infty$ as $n\rightarrow\infty$.
+      </blockquote>
+
+      <blockquote>
+	<strong>Example 1</strong><br />
+	% Fill in these with some example sequences of $a_n\rightarrow\infty$ 
+      </blockquote>
+
+      <p>Sequences can also tend to negative infinity and a similar definition exists for sequences of this type:</p>
+
+      <blockquote>
+	<strong>Definition (Divergent Sequence to Negative Infinity)</strong><br />
+	A sequence $(a_n)$ is <strong>divergent to negative infinity</strong> (or <em>tends to negative infinity</em>) if and only if, for any $K\in\mathbb{N}$, there exists $N\in\mathbb{N}$, where $N = N(K)$, such that $a_n < -K$, for <em>all</em> $n>N$. This is written as $a_n \rightarrow -\infty$ as $n\rightarrow\infty$.
+      </blockquote> 
+
+      <blockquote>
+	<strong>Example 1</strong><br />
+	% Fill in these with some example sequences of $a_n\rightarrow -\infty$ 
+      </blockquote>
+
+      <blockquote>
+	<strong>Remark</strong><br />
+	Let $(a_n)$ be a sequence such that $a_n \rightarrow -\infty$. Then $(-a_n) \rightarrow \infty$.
+      </blockquote>
+
+      <p>Once we have a divergent sequence $b_n$, say, it is possible to show that if $a_n \geq b_n$ for every $n$, then $a_n$ is necessarily a divergent sequence.</p>
+      
+      <blockquote>
+	<strong>Theorem</strong><br />
+	Let $(a_n)$, $(b_n)$ be sequences of real numbers and $M\in\mathbb{Z}^{+}$. If $a_n \geq b_n$ for all $n \geq M$ and $b_n \rightarrow \infty$ as $n \rightarrow \infty$, then $a_n \rightarrow \infty$ as $n \rightarrow \infty$.<br /><br />
+	<strong>Proof</strong><br />
+	Let $K$ be a positive number. Since $b_n \rightarrow \infty$ as $n \rightarrow \infty$, there exists $C\in\mathbb{Z}$ such that $b_n > K$, for all $n > C$. Now let $N = max\{M,C\}$. Then for all $n>N$ we have $a_n \geq b_n > K$ and thus $a_n \rightarrow \infty$ as $n \rightarrow \infty$.
+      </blockquote>
+
+      <p>There is an analogous result (with very similar proof) for sequences divergent to negative infinity:</p>
+      
+      <blockquote>
+	<strong>Theorem</strong><br />
+	Let $(a_n)$, $(b_n)$ be sequences of real numbers and $M\in\mathbb{Z}^{+}$. If $a_n \leq b_n$ for all $n \geq M$ and $b_n \rightarrow -\infty$ as $n \rightarrow \infty$, then $a_n \rightarrow -\infty$ as $n \rightarrow \infty$.<br /><br />
+	<strong>Proof</strong><br />
+	Let $K$ be a negative number. Since $b_n \rightarrow -\infty$ as $n \rightarrow \infty$, there exists $C\in\mathbb{Z}$ such that $b_n < -K$, for all $n > C$. Now let $N = max\{M,C\}$. Then for all $n>N$ we have $a_n \leq b_n < -K$ and thus $a_n \rightarrow -\infty$ as $n \rightarrow \infty$.
+      </blockquote>
+
+      <p>Divergent sequences are not the only type of sequences. If we take Example 4, we can see that elements of $d_n$ are becoming closer and closer to the number $1$. If we take $n=1000$, for example, the sequence element would be $d_{1000} = \frac{1000}{1001} \approx 0.999$, which is very close to $1$.</p>
 
       <h3>Limit of a Sequence</h3>
 
@@ -92,7 +144,7 @@
 
       <blockquote>
 	<strong>Definition (Limit of a Sequence)</strong><br />
-	A sequence $a_n$ has a limit $a$ if, $\forall \epsilon &gt; 0, \exists N \in \mathbb{N}$ s.t. $|a_n - a| &lt; \epsilon$ whenever $n > N$.
+	A sequence $a_n$ has a limit $a$ if for all $\epsilon &gt; 0$, there exists $N \in \mathbb{N}$ such that $|a_n - a| &lt; \epsilon$ whenever $n > N$.
       </blockquote>
       
       <p>% Use d_n to show that we can determine the limit</p>
@@ -103,11 +155,11 @@
 	<strong>Theorem</strong><br />
 	Let $(a_n) \rightarrow a$ as $n \rightarrow \infty$. Then $(|a_n|) \rightarrow |a|$ as $n \rightarrow \infty$.<br /></br />
 	<strong>Proof</strong><br />
-	Given that $\forall \epsilon > 0, \exists N \in \mathbb{N}$ s.t. $|a_n - a| < \epsilon$, $\forall n > N$, we can say that $\left||a_n|-|a|\right| \leq |a_n - a|$, utilising our results from the Inequalities section. Thus:
+	Given that for all $\epsilon > 0$, there exists a $N \in \mathbb{N}$ such that $|a_n - a| < \epsilon$, for all $n > N$, we can say that $\left||a_n|-|a|\right| \leq |a_n - a|$, utilising our results from the Inequalities section. Thus:
 	\begin{eqnarray*}
         \left||a_n|-|a|\right| &\leq& |a_n - a| < \epsilon
 	\end{eqnarray*}
-        which holds $\forall n > N$. Hence we can make the distance between $|a_n|$ and $|a|$ as small as necessary. Thus $(|a_n|) \rightarrow |a|$. 
+        which holds for all $n > N$. Hence we can make the distance between $|a_n|$ and $|a|$ as small as necessary. Thus $(|a_n|) \rightarrow |a|$. 
       </blockquote>
 
       <p>% Theorem a_n convergent, then |a_n| convergent, show that converse does not hold, give an example</p>
@@ -126,6 +178,20 @@
 	\end{eqnarray*}
         Thus $(1/a_n)\rightarrow 0$ and we have shown the first side. Now let us suppose that $(1/a_n) \rightarrow 0$. If we choose $M>0$, then as before $1/M>0$. We know that $\exists N$ s.t. $\left|1/a_n\right| < 1/M, \forall n>N$, and that $\left|1/a_n\right| = 1/a_n$, thus it can be seen that $a_n > M, \forall n>N$ and hence $(a_n)\rightarrow \infty$.
       </blockquote>
+
+      <p>% Remark - $a_n>0$ is a necessary condition: $a_n = (-1)^{n+1} n$.</p>
+      
+      <p>% Theorem - A sequence can't have two limits</p>
+
+      <p>% Theorem - $b^n$ convergence for values of $b$</p>
+
+      <h3>Bounded Sequences</h3>
+      
+      <p>% Definition(s) - Bounded Above, Below and 'Bounded'</p>
+
+      <p>% Theorem - Every convergence sequence is bounded, but not converse</p>
+
+      <h4>Algebraic Results of Sequences</h4>
 
       <ul class="pager">
 	<li class="previous">
